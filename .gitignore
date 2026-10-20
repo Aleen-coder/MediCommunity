@@ -1,0 +1,15 @@
+﻿# Private database dump
+/users.sql
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies and generated files
+node_modules/
+vendor/
+*.log
+
+# Local database configuration
+/connection.php

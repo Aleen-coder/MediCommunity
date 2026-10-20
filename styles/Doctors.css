@@ -1,0 +1,409 @@
+/* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+         /*   background: #f4f7f6; /* Pastel background color */
+            background: #f0f4f8; /* Changed from #f4f7f6 to a softer grey-blue */
+            margin: 0;
+            padding: 0;
+            color: #334e68;      /* Changed from #1C2D4A to a softer dark blue */
+          /*  color: #1C2D4A; /* Dark text color */
+            overflow-x: hidden; /* Prevents overall page horizontal scroll */
+        }
+
+        /* Fixed header (same as home page) */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 27px 0; /* Increased top and bottom padding */
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- Navbar Styles for Desktop & Mobile --- */
+        nav {
+            width: 100%; /* Ensure nav takes full width of header */
+            overflow-x: auto; /* Enables horizontal scrolling */
+            -webkit-overflow-scrolling: touch; /* Smoother scrolling on iOS */
+            padding-bottom: 5px; /* Space for potential scrollbar */
+            /* Hide scrollbar but keep functionality for webkit browsers */
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        nav::-webkit-scrollbar { /* Chrome, Safari, Opera */
+            display: none;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center; /* Center links on desktop */
+            list-style: none;
+            gap: 40px; /* Desktop gap between links */
+            flex-wrap: nowrap; /* CRUCIAL: Prevents items from wrapping */
+            /* This ensures the UL is always wide enough to contain all items on one line */
+            min-width: max-content; 
+            padding: 0 20px; /* Padding for the scrollable area on sides */
+        }
+
+        nav ul li {
+            margin: 0; /* Remove individual margins as gap handles spacing */
+            flex-shrink: 0; /* Prevents list items from shrinking, ensuring they keep their full content */
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #1C2D4A;
+            font-weight: 600;
+            font-size: 16px; /* Desktop font size */
+            transition: color 0.3s ease;
+            white-space: nowrap; /* Ensures text and icon stay on one line */
+            display: flex; /* For icon alignment */
+            align-items: center; /* For icon alignment */
+            gap: 8px; /* Space between text and icon */
+            padding: 8px 13px; /* Default desktop padding */
+        }
+
+        nav ul li a:hover {
+            color: #17a2b8; /* Aqua */
+            background-color: #f8f9fa;
+            border-color: #138496;
+        }
+
+        nav ul li a i {
+            margin-right: 0; /* Margin is now handled by gap in 'nav ul li a' */
+            transition: transform 0.2s ease-in-out; /* Preserve animation */
+            border: 2px solid #17a2b8; /* Aqua border */
+            padding: 8px 13px; /* Adjust padding to account for border */
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover i {
+            transform: rotate(90deg); /* Preserve animation */
+        }
+
+        nav ul li a[href="login.html"] {
+            border: 2px solid #17a2b8; /* Aqua border */
+            padding: 8px 13px; /* Adjust padding to account for border */
+            border-radius: 5px;
+        }
+
+        nav ul li a[href="login.html"]:hover {
+            background-color: #f8f9fa;
+            color: #17a2b8;
+            border-color: #138496;
+        }
+
+        /* Main section */
+        main {
+            margin-top: 100px; /* Added space between header and content */
+        }
+
+        .cards-wrapper {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Desktop: 3 columns */
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 30px;
+            padding-left: 20px; /* Add padding to sides for smaller screens */
+            padding-right: 20px; /* Add padding to sides for smaller screens */
+        }
+
+        .doctor-card {
+            display: flex;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            min-height: 250px;
+            position: relative;
+            overflow: hidden;
+            background-color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        /* Updated pastel colors for doctor cards */
+        .c1 { background-color: #A6D8D6; } /* Muted teal */
+        .c2 { background-color: #C4E9D7; } /* Mint green */
+        .c3 { background-color: #D0E8FF; } /* Light blue */
+        .c6 { background-color: #A9F0E5; } /* Mint green */
+
+        .doctor-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 16px;
+            object-fit: cover;
+            margin-right: 20px;
+            border: 4px solid white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .doctor-info {
+            flex: 1;
+            padding-left: 0px; /* Removed extra padding as gap below will handle it */
+        }
+
+        .doctor-info h2 {
+            margin: 0 0 10px;
+            font-size: 1.5em;
+            line-height: 1.3;
+            color: #1C2D4A;
+        }
+
+        .doctor-info p {
+            margin: 0 0 8px;
+            font-size: 0.9em;
+            line-height: 1.4;
+            color: #2c3e50;
+        }
+
+        .book-btn {
+            padding: 10px 20px;
+            background-color: #3B7F7F; /* Darker teal */
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            margin-top: 10px; /* Add some space above the button */
+        }
+
+        .book-btn:hover {
+            background-color: #1C2D4A; /* Dark blue button hover color */
+            color: #fff;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+            background-color: #ffffff;
+            padding: 10px;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Ensure the button looks as intended when wrapped in a link */
+        .book-btn-link {
+            text-decoration: none; /* Removes underline from the link */
+            display: inline-block; /* Allows button styling to fully apply */
+        }
+
+        /* Search Bar Styling Start */
+        .search-bar-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 0 20px; /* Horizontal padding for smaller screens */
+            margin-top: 100px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            max-width: 600px;
+            padding: 12px 15px 12px 45px; /* Adjust padding: 45px on left for icon */
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            font-size: 1.1em;
+            color: #1C2D4A;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #17a2b8;
+            box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.2);
+            outline: none;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 50%; /* Start positioning from the horizontal center */
+            transform: translateX(calc(-300px + 15px)); /* Fine-tune position based on max-width (600px / 2 = 300px) and padding */
+            color: #888;
+            font-size: 1.2em;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Optional: Add a subtle hover effect to doctor cards */
+        .doctor-card:hover {
+            transform: translateY(-3px); /* Lifts the card slightly */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Makes the shadow more pronounced */
+        }
+        /* Search Bar Styling End */
+
+
+        /* --- Responsive Adjustments --- */
+
+        /* Tablet and smaller laptop screens */
+        @media (max-width: 992px) {
+            header {
+                padding: 20px 0; /* Slightly reduced header padding */
+            }
+
+            nav ul {
+                /* Ensure justify-content is flex-start when scrolling for consistency */
+                justify-content: flex-start;
+                gap: 20px; /* Slightly more space for visibility */
+                padding: 0 15px; /* Ensure padding for scrollable area */
+            }
+
+            nav ul li a {
+                font-size: 14.5px; /* Slightly smaller font for better fit, but still readable */
+                padding: 7px 12px; /* Adjusted padding */
+            }
+
+            nav ul li a i {
+                padding: 6px 10px;
+            }
+
+            .cards-wrapper {
+                grid-template-columns: repeat(2, 1fr); /* Two columns on tablets */
+                gap: 25px;
+            }
+
+            .doctor-card {
+                flex-direction: column; /* Stack image and info vertically */
+                align-items: center; /* Center items in column */
+                text-align: center; /* Center text */
+                min-height: auto; /* Allow height to adjust */
+            }
+
+            .doctor-img {
+                width: 120px; /* Smaller image */
+                height: 120px;
+                margin-right: 0; /* Remove horizontal margin */
+                margin-bottom: 15px; /* Add vertical margin */
+            }
+
+            .doctor-info {
+                padding-left: 0; /* No left padding needed when stacked */
+            }
+
+            .doctor-info h2 {
+                font-size: 1.3em;
+            }
+
+            .doctor-info p {
+                font-size: 0.85em;
+            }
+            .search-icon {
+                left: 35px; /* Adjust icon position */
+                transform: translateX(0);
+            }
+        }
+
+        /* Mobile screens */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 0; /* Further reduced header padding */
+            }
+
+            nav ul {
+                gap: 10px; /* Tighter gap for mobile */
+                padding: 0 10px;
+            }
+
+            nav ul li a {
+                font-size: 13px; /* Smaller font for mobile */
+                padding: 6px 10px;
+            }
+
+            nav ul li a i {
+                padding: 5px 8px;
+            }
+
+            .cards-wrapper {
+                grid-template-columns: 1fr; /* Single column on mobile */
+                gap: 20px;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .doctor-card {
+                padding: 15px; /* Reduced card padding */
+            }
+
+            .doctor-img {
+                width: 100px; /* Even smaller image */
+                height: 100px;
+                margin-bottom: 10px;
+            }
+
+            .doctor-info h2 {
+                font-size: 1.2em;
+            }
+
+            .doctor-info p {
+                font-size: 0.8em;
+            }
+
+            .book-btn {
+                padding: 8px 15px; /* Smaller button */
+                font-size: 0.9em;
+            }
+            .search-icon {
+                left: 25px; /* Adjust icon position for very small screens */
+            }
+        }
+
+        /* Smallest mobile screens (optional, for very tight layouts) */
+        @media (max-width: 480px) {
+            header {
+                padding: 10px 0;
+            }
+            nav ul {
+                gap: 8px; /* Even tighter gap */
+                padding: 0 5px;
+            }
+            nav ul li a {
+                font-size: 11px; /* Smallest font size */
+                padding: 3px 6px;
+            }
+            nav ul li a i {
+                padding: 2px 5px;
+            }
+            .cards-wrapper {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+            .doctor-card {
+                padding: 12px;
+            }
+            .doctor-img {
+                width: 80px;
+                height: 80px;
+            }
+            .doctor-info h2 {
+                font-size: 1em;
+            }
+            .doctor-info p {
+                font-size: 0.7em;
+            }
+            .book-btn {
+                padding: 6px 12px;
+                font-size: 0.8em;
+            }
+            .search-input {
+                padding: 10px 15px 10px 35px; /* Adjust padding for smaller icon */
+            }
+            .search-icon {
+                left: 18px;
+                font-size: 0.9em;
+            }
+        }
+
+

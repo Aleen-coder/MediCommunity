@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - HealthCare System</title>
+    
+<link  rel="stylesheet" href="../styles/appointment.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+
+<body>
+   <header>
+    <nav>
+        <ul>
+            <li><a href="HomePage.HTML"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="Doctors.HTML"><i class="fas fa-user-md"></i> Doctors</a></li>
+            <li><a href="appointments.html"><i class="fas fa-calendar-check"></i> Appointment</a></li>
+            <li><a href="Health-tips.html"><i class="fas fa-heartbeat"></i> Tips</a></li>
+            <li><a href="community.html"><i class="fas fa-comments"></i> Community</a></li>
+            <li><a href="index.html">Login</a></li>
+        </ul>
+    </nav>
+</header>
+<div class="header-spacer"></div>
+    <div id="appointment-container">
+        <div class="form-container">
+            <h2>Book Your Appointment</h2>
+            <form action="/submit_appointment" method="POST">
+                <label for="doctor">Select Doctor</label>
+                  <select id="doctor" name="doctor" required>
+          <option value="Dr. Emma Rodriguez">Dr. Emma Rodriguez - Cardiology</option>
+          <option value="Dr. Jacob Nguyen">Dr. Jacob Nguyen - Pediatrics</option>
+          <option value="Dr. Michael Smith">Dr. Michael Smith - Dermatology</option>
+          <option value="Dr. Sophia Patel">Dr. Sophia Patel - Orthopedics</option>
+          <option value="Dr. Julia Clarke">Dr. Julia Clarke - Neurology</option>
+          <option value="Dr. Lara Lee">Dr. Lara Lee - General Medicine</option>
+          <option value="Dr. Andrew King">Dr. Andrew King - Gynecology</option>
+          <option value="Dr. David Lee">Dr. David Lee - Urology</option>
+          <option value="Dr. Clara Johnson">Dr. Clara Johnson - Ophthalmology</option>
+          <option value="Dr. Paul Adams">Dr. Paul Adams - Endocrinology</option>
+        </select>
+
+                <label for="date">Select Date</label>
+                <input type="date" id="date" name="date" required>
+
+                <label for="time">Select Time</label>
+                <input type="time" id="time" name="time" required>
+
+                <button type="submit">Book Appointment</button>
+            </form>
+        </div>
+    </div>
+<!-- Doctor Info Modal -->
+<div id="doctorModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2 id="modalName"></h2>
+    <p id="modalSpecialty"></p>
+    <p id="modalExperience"></p>
+    <p id="modalLocation"></p>
+    <p id="modalAvailability"></p>
+  </div>
+</div>
+
+<script>
+const doctorSelect = document.getElementById("doctor");
+const modal = document.getElementById("doctorModal");
+const closeBtn = document.querySelector(".close");
+
+doctorSelect.addEventListener("change", function() {
+  const selectedOption = this.options[this.selectedIndex].text; 
+  // Example: "Dr. Emma Rodriguez - Cardiology"
+
+  // Split into name and specialty
+  const [name, specialty] = selectedOption.split(" - ");
+
+  // Fill modal
+  document.getElementById("modalName").textContent = name;
+  document.getElementById("modalSpecialty").textContent = "Specialty: " + (specialty || "N/A");
+  document.getElementById("modalExperience").textContent = "Experience: (to be shown)";
+  document.getElementById("modalLocation").textContent = "Location: (to be shown)";
+  document.getElementById("modalAvailability").textContent = "Availability: (to be shown)";
+
+  // Show modal
+  modal.style.display = "block";
+});
+
+// Close modal
+closeBtn.onclick = () => modal.style.display = "none";
+window.onclick = (event) => { if (event.target == modal) modal.style.display = "none"; };
+</script>
+
+
+</body>
+</html>

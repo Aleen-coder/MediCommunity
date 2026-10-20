@@ -1,0 +1,249 @@
+/* General Reset */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;/* The content size will shrink to fit inside the actual width*/
+}
+
+body {
+font-family: 'Montserrat', sans-serif;
+background: #f4f7f6;
+color: #1C2D4A;
+}
+
+header {
+background-color: rgba(255, 255, 255, 0.95);
+position: fixed;
+top: 0;
+width: 100%;
+padding: 23px 0;
+z-index: 10;
+}
+
+nav ul {
+display: flex;
+justify-content: center;
+list-style: none;
+}
+
+nav ul li {
+margin: 0 20px;
+}
+
+nav ul li a {
+text-decoration: none;
+color: #1C2D4A;
+font-weight: 600;
+font-size: 16px;
+transition: color 0.3s ease;
+/* when we move the mouse away.
+when the color of this element changes,do it smoothly over 0.3 seconds, using the ease timing function.
+ease: is a timing function.It controls how the speed of the transition behaves over time.
+*//* slow start and end and fast at the middle*//* starts slow, speeds up in the middle, and slows down at the end.*/
+}
+
+
+nav ul li a:hover {
+color: #17a2b8; /* Aqua */
+background-color: #f8f9fa;
+  border-color: #138496;
+}
+
+nav ul li a i {
+margin-right: 10px;
+transition: transform 0.2s ease-in-out;
+  border: 2px solid #17a2b8; /* Aqua border */
+    padding: 8px 13px; /* Adjust padding to account for border */
+    border-radius: 5px;
+}
+
+nav ul li a:hover i {
+transform: rotate(90deg);
+}
+nav ul li a[href="login.html"] {
+    border: 2px solid #17a2b8; /* Aqua border */
+    padding: 8px 13px; /* Adjust padding to account for border */
+    border-radius: 5px;
+}
+
+nav ul li a[href="login.html"]:hover {/* since in the design of the other does not have border-color it will not chnage intially
+    hover state needs to match or complement those styles*/
+    background-color: #f8f9fa; /* Light background on hover */
+    color: #17a2b8; /* Aqua text on hover */
+    border-color: #138496; /* Darker aqua border on hover */
+}
+main {
+margin-top: 80px;/*<main> come after the <header>*/
+}
+
+.page-background {
+  position:relative;
+  width:100%;
+  height: 100vh; /* Adjust height if needed */
+background-size: cover;
+background-position: center;
+background-color: #f0f0f0;  /* Default background color */
+height: 100vh;
+position: relative;
+display: flex;
+align-items: flex-end;
+justify-content: center;
+text-align: center;
+padding-bottom: 60px;
+opacity: 1;
+ transition: background-image 1s ease-in-out, opacity 1s ease-in-out;
+
+}
+
+.content {
+z-index: 2;
+background-color: rgba(255, 255, 255, 0.7);
+padding: 30px;
+border-radius: 15px;
+max-width: 800px;
+margin-bottom: 20px;
+box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+margin: 10px; /* Add some margin around the buttons */
+display: flex; /* Enable flexbox for content */
+flex-direction: column; /* Stack items vertically */
+align-items: center; /* Center items horizontally */
+text-align: center; /* Center text within intro-text as well */
+}
+
+.content button i {
+margin-right: 10px;
+}
+
+.content button:hover {
+background-color: #1C2D4A;
+color: #fff;
+}
+
+.intro-text h1 {
+font-family: 'Playfair Display', serif;
+font-size: 36px;
+margin-bottom: 20px;
+font-weight: bold;
+text-align: center;
+
+}
+
+.intro-text p {
+font-size: 16px;
+margin-bottom: 10px;
+color: #2c3e50;
+font-weight: 600;
+}
+
+
+
+
+footer {
+text-align: center;
+padding: 15px;
+font-size: 14px;
+background-color: #ffffff;
+color: #666;
+position: relative;
+}
+
+.fade-in {
+animation: fadeIn 1.2s ease-in;
+}
+
+@keyframes fadeIn {
+0% { opacity: 0; transform: translateY(20px); }
+100% { opacity: 1; transform: translateY(0); }
+}
+/* --- HEALTH NUGGET FEATURE STYLES --- */
+
+/* Container for the button and the card.
+   This div positions the button to the right and helps align the card below it. */
+.health-nugget-section {
+    display: flex;
+    justify-content: flex-end; /* Pushes the button to the right side of the screen */
+    align-items: flex-start; /* Aligns content to the top of this section */
+    
+    /* VERY IMPORTANT: Fixed positioning makes this element float relative to the viewport.
+       This ensures it appears consistently to the right, under the nav,
+       regardless of your main content's flow. */
+    position: fixed; 
+    top: 100px; /* the vertical space below your nav bar */
+    right: 20px; /* Space from the right edge of the browser window */
+    z-index: 101; /* Ensures this section is above your header and main content */
+    padding: 0; /* Remove any default padding */
+    margin: 0; /* Remove any default margin */
+}
+
+/* Style for the "Wellness Wisdom" button */
+.health-btn {
+    background-color: #17a2b8; /* Your aqua accent color */
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 25px; /* Pill shape */
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    display: flex; /* Align icon with text */
+    align-items: center;
+    gap: 8px; /*  for the Space between text and icon */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Subtle shadow */
+}
+
+.health-btn:hover {
+    background-color: #138496; /* Darker aqua on hover */
+    transform: translateY(-2px); /* Slight lift effect up sice the value is negative */
+}
+
+.health-btn i {
+    font-size: 1.1em;
+}
+
+/* Style for the informational card that pops up */
+.health-card {
+    display: none; /* **Hides the card by default.** JavaScript will make it visible. */
+    position: absolute; /* Positions the card relative to its parent (.health-nugget-section) */
+    top: calc(100% + 15px); /* Places the card 15px below the button */
+    right: 0; /* Aligns the card with the right edge of its parent container */
+    width: 280px; /* Medium to small size */
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px; /* Slightly reduced padding */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18); /* Prominent, soft shadow */
+    font-family: 'Montserrat', sans-serif; /* Consistent font with your body */
+    line-height: 1.6; /* Slightly reduced line spacing */
+    font-size: 0.95em; /* Slightly reduced font size */
+    color: #333;
+    z-index: 102; /* Ensures the card appears above the button and header */
+    animation: fadeInScale 0.3s ease-out forwards; /* Animation for appearance */
+}
+
+/* Close button inside the card */
+.health-card .close-btn {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 1.4em;
+    cursor: pointer;
+    color: #888;
+    transition: color 0.2s ease;
+}
+
+.health-card .close-btn:hover {
+    color: #555;
+}
+
+/* Animation for the card appearing */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
