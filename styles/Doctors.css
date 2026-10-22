@@ -50,7 +50,7 @@
             gap: 40px; /* Desktop gap between links */
             flex-wrap: nowrap; /* CRUCIAL: Prevents items from wrapping */
             /* This ensures the UL is always wide enough to contain all items on one line */
-            min-width: max-content; 
+            min-width: max-content;
             padding: 0 20px; /* Padding for the scrollable area on sides */
         }
 
@@ -72,11 +72,15 @@
             padding: 8px 13px; /* Default desktop padding */
         }
 
+
+
         nav ul li a:hover {
-            color: #17a2b8; /* Aqua */
-            background-color: #f8f9fa;
-            border-color: #138496;
-        }
+  color: var(--turquoise-dark);
+  background: #f0f9fa;
+  border-color: #d8eff1;
+}
+
+
 
         nav ul li a i {
             margin-right: 0; /* Margin is now handled by gap in 'nav ul li a' */
@@ -85,10 +89,12 @@
             padding: 8px 13px; /* Adjust padding to account for border */
             border-radius: 5px;
         }
-
         nav ul li a:hover i {
-            transform: rotate(90deg); /* Preserve animation */
-        }
+       transform: translateY(-1px);
+}
+
+
+
 
         nav ul li a[href="login.html"] {
             border: 2px solid #17a2b8; /* Aqua border */
@@ -200,43 +206,50 @@
         }
 
         /* Search Bar Styling Start */
-        .search-bar-container {
+.search-bar-container {
             display: flex;
             justify-content: center;
             align-items: center;
             margin-bottom: 30px;
-            padding: 0 20px; /* Horizontal padding for smaller screens */
-            margin-top: 100px;
+            padding: 0 20px;
+            margin-top: 140px; /* Increased from 100px to push it lower below the navbar */
             position: relative;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .search-input {
             width: 100%;
-            max-width: 600px;
-            padding: 12px 15px 12px 45px; /* Adjust padding: 45px on left for icon */
+            padding: 12px 15px 12px 45px; /* Left padding makes room for the icon */
             border: 1px solid #ddd;
             border-radius: 25px;
             font-size: 1.1em;
             color: #1C2D4A;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             transition: all 0.3s ease;
+            background-color: #ffffff;
         }
 
+
         .search-input:focus {
-            border-color: #17a2b8;
-            box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.2);
-            outline: none;
-        }
+    border-color: #17a2b8;
+    box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.2);
+    outline: none;
+}
+
+
 
         .search-icon {
             position: absolute;
-            left: 50%; /* Start positioning from the horizontal center */
-            transform: translateX(calc(-300px + 15px)); /* Fine-tune position based on max-width (600px / 2 = 300px) and padding */
+            left: 35px; /* Clean relative offset from the container edge */
             color: #888;
             font-size: 1.2em;
             pointer-events: none;
             z-index: 1;
         }
+        /*
+
 
         /* Optional: Add a subtle hover effect to doctor cards */
         .doctor-card:hover {

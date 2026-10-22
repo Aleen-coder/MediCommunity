@@ -1,249 +1,639 @@
-/* General Reset */
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;/* The content size will shrink to fit inside the actual width*/
+
+/* =========================
+   1. GENERAL RESET & COLORS
+========================= */
+
+:root {
+  --navy: #1C2D4A;
+  --turquoise: #17a2b8;
+  --turquoise-dark: #138496;
+  --background: #f4f7f6;
+  --white: #ffffff;
+  --text: #2c3e50;
+  --muted: #64748b;
+  --border: #e0e8e8;
+  --shadow: 0 8px 28px rgba(28, 45, 74, 0.10);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  scroll-behavior: smooth;
 }
 
 body {
-font-family: 'Montserrat', sans-serif;
-background: #f4f7f6;
-color: #1C2D4A;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow-wrap: break-word;
+  font-family: "Montserrat", sans-serif;
+  color: var(--navy);
+  background: var(--background);
+  line-height: 1.6;
 }
 
+img,
+video,
+iframe {
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* =========================
+   2. HEADER & NAVIGATION
+========================= */
+
 header {
-background-color: rgba(255, 255, 255, 0.95);
-position: fixed;
-top: 0;
-width: 100%;
-padding: 23px 0;
-z-index: 10;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  padding: 13px clamp(12px, 3vw, 32px);
+  background: rgba(255, 255, 255, 0.97);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 3px 12px rgba(28, 45, 74, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+nav {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 nav ul {
-display: flex;
-justify-content: center;
-list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px clamp(8px, 1.8vw, 24px);
+  list-style: none;
 }
 
 nav ul li {
-margin: 0 20px;
+  margin: 0;
 }
 
 nav ul li a {
-text-decoration: none;
-color: #1C2D4A;
-font-weight: 600;
-font-size: 16px;
-transition: color 0.3s ease;
-/* when we move the mouse away.
-when the color of this element changes,do it smoothly over 0.3 seconds, using the ease timing function.
-ease: is a timing function.It controls how the speed of the transition behaves over time.
-*//* slow start and end and fast at the middle*//* starts slow, speeds up in the middle, and slows down at the end.*/
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--navy);
+  min-height: 44px;
+
+  color: var(--navy);
+
+  /* Clearer navbar text */
+  font-size: clamp(14px, 1.1vw, 17px);
+  font-weight: 600;
+
+
+  line-height: 1.4;
+  text-decoration: none;
+  transition:
+    color 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease;
 }
 
 
-nav ul li a:hover {
-color: #17a2b8; /* Aqua */
-background-color: #f8f9fa;
-  border-color: #138496;
-}
+
 
 nav ul li a i {
-margin-right: 10px;
-transition: transform 0.2s ease-in-out;
-  border: 2px solid #17a2b8; /* Aqua border */
-    padding: 8px 13px; /* Adjust padding to account for border */
-    border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--turquoise);
+  font-size: 15px;
+  transition: transform 0.25s ease;
+}
+
+nav ul li a:hover {
+  color: var(--turquoise-dark);
+  background: #f0f9fa;
+  border-color: #d8eff1;
 }
 
 nav ul li a:hover i {
-transform: rotate(90deg);
+  transform: translateY(-1px);
 }
+
+/* Login link */
+nav ul li a[href="index.html"],
 nav ul li a[href="login.html"] {
-    border: 2px solid #17a2b8; /* Aqua border */
-    padding: 8px 13px; /* Adjust padding to account for border */
-    border-radius: 5px;
+  padding: 9px 16px;
+  color: var(--white);
+  background: var(--turquoise);
+  border-color: var(--turquoise);
+  border-radius: 8px;
 }
 
-nav ul li a[href="login.html"]:hover {/* since in the design of the other does not have border-color it will not chnage intially
-    hover state needs to match or complement those styles*/
-    background-color: #f8f9fa; /* Light background on hover */
-    color: #17a2b8; /* Aqua text on hover */
-    border-color: #138496; /* Darker aqua border on hover */
+nav ul li a[href="index.html"]:hover,
+nav ul li a[href="login.html"]:hover {
+  color: var(--white);
+  background: var(--turquoise-dark);
+  border-color: var(--turquoise-dark);
 }
+
+/* Keyboard accessibility */
+nav a:focus-visible,
+.health-btn:focus-visible,
+.close-btn:focus-visible {
+  outline: 3px solid #73d0dc;
+  outline-offset: 3px;
+}
+
+/* =========================
+   3. MAIN CONTENT
+========================= */
+
 main {
-margin-top: 80px;/*<main> come after the <header>*/
+  width: 100%;
+  min-width: 0;
+  flex: 1;
 }
 
+/* =========================
+   4. BACKGROUND SLIDESHOW
+========================= */
 .page-background {
-  position:relative;
-  width:100%;
-  height: 100vh; /* Adjust height if needed */
-background-size: cover;
-background-position: center;
-background-color: #f0f0f0;  /* Default background color */
-height: 100vh;
-position: relative;
-display: flex;
-align-items: flex-end;
-justify-content: center;
-text-align: center;
-padding-bottom: 60px;
-opacity: 1;
- transition: background-image 1s ease-in-out, opacity 1s ease-in-out;
-
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center; /* Changed from flex-end */
+  justify-content: center;
+  width: 100%;
+  min-height: clamp(500px, 78vh, 850px);
+  min-height: clamp(500px, 78dvh, 850px);
+  padding: 30px 20px;
+  padding-bottom: 90px;
+  overflow: hidden;
+  text-align: center;
+  background-color: #dce7e7;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity 0.8s ease-in-out;
 }
+
+/* Subtle neutral overlay: preserves the photo's original colors */
+.page-background::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(28, 45, 74, 0.04) 0%,
+    rgba(28, 45, 74, 0.12) 45%,
+    rgba(28, 45, 74, 0.40) 100%
+  );
+  pointer-events: none;
+}
+
+/* =========================
+   5. WELCOME CONTENT CARD
+========================= */
+
+/* Welcome content box */
 
 .content {
-z-index: 2;
-background-color: rgba(255, 255, 255, 0.7);
-padding: 30px;
-border-radius: 15px;
-max-width: 800px;
-margin-bottom: 20px;
-box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-margin: 10px; /* Add some margin around the buttons */
-display: flex; /* Enable flexbox for content */
-flex-direction: column; /* Stack items vertically */
-align-items: center; /* Center items horizontally */
-text-align: center; /* Center text within intro-text as well */
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 28px 32px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 18px;
+
+  /* More transparent white glass effect */
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 12px 38px rgba(28, 45, 74, 0.12);
+  text-align: center;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
 }
 
-.content button i {
-margin-right: 10px;
-}
-
-.content button:hover {
-background-color: #1C2D4A;
-color: #fff;
+.intro-text {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .intro-text h1 {
-font-family: 'Playfair Display', serif;
-font-size: 36px;
-margin-bottom: 20px;
-font-weight: bold;
-text-align: center;
-
+  margin-bottom: 12px;
+  color: var(--navy);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 740;
+  line-height: 1.3;
+  text-wrap: balance;
 }
+
+
 
 .intro-text p {
-font-size: 16px;
-margin-bottom: 10px;
-color: #2c3e50;
-font-weight: 600;
+  margin-bottom: 7px;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 550;
+  line-height: 1.65;
+}
+
+.intro-text p:last-child {
+  margin-bottom: 0;
 }
 
 
 
+.content button {
+  max-width: 100%;
+  cursor: pointer;
+}
+
+.content button i {
+  margin-right: 8px;
+}
+
+.content button:hover {
+  color: var(--white);
+  background-color: var(--navy);
+}
+
+/* =========================
+   6. FOOTER
+========================= */
 
 footer {
-text-align: center;
-padding: 15px;
-font-size: 14px;
-background-color: #ffffff;
-color: #666;
-position: relative;
+  position: relative;
+  width: 100%;
+  margin-top: auto;
+  padding: 17px 16px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  background: var(--white);
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.6;
 }
 
+/* =========================
+   7. PAGE ANIMATION
+========================= */
+
 .fade-in {
-animation: fadeIn 1.2s ease-in;
+  animation: fadeIn 0.9s ease-out both;
 }
 
 @keyframes fadeIn {
-0% { opacity: 0; transform: translateY(20px); }
-100% { opacity: 1; transform: translateY(0); }
-}
-/* --- HEALTH NUGGET FEATURE STYLES --- */
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
 
-/* Container for the button and the card.
-   This div positions the button to the right and helps align the card below it. */
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   8. WELLNESS WISDOM SECTION
+========================= */
+
 .health-nugget-section {
-    display: flex;
-    justify-content: flex-end; /* Pushes the button to the right side of the screen */
-    align-items: flex-start; /* Aligns content to the top of this section */
-    
-    /* VERY IMPORTANT: Fixed positioning makes this element float relative to the viewport.
-       This ensures it appears consistently to the right, under the nav,
-       regardless of your main content's flow. */
-    position: fixed; 
-    top: 100px; /* the vertical space below your nav bar */
-    right: 20px; /* Space from the right edge of the browser window */
-    z-index: 101; /* Ensures this section is above your header and main content */
-    padding: 0; /* Remove any default padding */
-    margin: 0; /* Remove any default margin */
+  position: fixed;
+  top: 88px;
+  right: clamp(12px, 2.5vw, 28px);
+  z-index: 110;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  max-width: calc(100vw - 24px);
+  margin: 0;
+  padding: 0;
 }
 
-/* Style for the "Wellness Wisdom" button */
 .health-btn {
-    background-color: #17a2b8; /* Your aqua accent color */
-    color: white;
-    padding: 10px 18px;
-    border: none;
-    border-radius: 25px; /* Pill shape */
-    cursor: pointer;
-    font-size: 0.95em;
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.1s ease;
-    display: flex; /* Align icon with text */
-    align-items: center;
-    gap: 8px; /*  for the Space between text and icon */
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Subtle shadow */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  max-width: 100%;
+  min-height: 44px;
+  padding: 10px 17px;
+  border: 1px solid var(--turquoise);
+  border-radius: 25px;
+  color: var(--white);
+  background: var(--turquoise);
+  box-shadow: 0 4px 12px rgba(23, 162, 184, 0.20);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
 }
 
 .health-btn:hover {
-    background-color: #138496; /* Darker aqua on hover */
-    transform: translateY(-2px); /* Slight lift effect up sice the value is negative */
+  background: var(--turquoise-dark);
+  border-color: var(--turquoise-dark);
+  box-shadow: 0 6px 16px rgba(23, 162, 184, 0.25);
+  transform: translateY(-2px);
 }
 
 .health-btn i {
-    font-size: 1.1em;
+  flex-shrink: 0;
+  font-size: 1.05em;
 }
 
-/* Style for the informational card that pops up */
+/* =========================
+   9. WELLNESS INFORMATION CARD
+========================= */
+
 .health-card {
-    display: none; /* **Hides the card by default.** JavaScript will make it visible. */
-    position: absolute; /* Positions the card relative to its parent (.health-nugget-section) */
-    top: calc(100% + 15px); /* Places the card 15px below the button */
-    right: 0; /* Aligns the card with the right edge of its parent container */
-    width: 280px; /* Medium to small size */
-    background-color: #ffffff;
-    border: 1px solid #e0e0e0;
-    border-radius: 12px;
-    padding: 20px; /* Slightly reduced padding */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18); /* Prominent, soft shadow */
-    font-family: 'Montserrat', sans-serif; /* Consistent font with your body */
-    line-height: 1.6; /* Slightly reduced line spacing */
-    font-size: 0.95em; /* Slightly reduced font size */
-    color: #333;
-    z-index: 102; /* Ensures the card appears above the button and header */
-    animation: fadeInScale 0.3s ease-out forwards; /* Animation for appearance */
+  display: none;
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: 310px;
+  max-width: calc(100vw - 24px);
+  max-height: min(65vh, 450px);
+  max-height: min(65dvh, 450px);
+  overflow-y: auto;
+  padding: 30px 21px 21px;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  color: var(--text);
+  background: var(--white);
+  box-shadow: var(--shadow);
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+  overscroll-behavior: contain;
+  z-index: 111;
 }
 
-/* Close button inside the card */
+.health-card p {
+  margin: 0;
+  color: var(--text);
+}
+
+.health-card strong {
+  color: var(--navy);
+  font-weight: 700;
+}
+
 .health-card .close-btn {
-    position: absolute;
-    top: 8px;
-    right: 12px;
-    font-size: 1.4em;
-    cursor: pointer;
-    color: #888;
-    transition: color 0.2s ease;
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  color: #77848e;
+  background: transparent;
+  font-size: 23px;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .health-card .close-btn:hover {
-    color: #555;
+  color: var(--navy);
+  background: #eaf7f8;
 }
 
-/* Animation for the card appearing */
+/* Animated visibility class used by Home.js */
+.health-card.is-visible {
+  display: block;
+  animation: fadeInScale 0.25s ease-out both;
+}
+
 @keyframes fadeInScale {
-    from {
-        opacity: 0;
-        transform: scale(0.95) translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================
+   10. TABLET
+========================= */
+
+@media (max-width: 768px) {
+  header {
+    padding: 10px 12px;
+  }
+
+  nav ul {
+    gap: 6px 10px;
+  }
+
+
+
+nav ul li a {
+  min-height: 40px;
+  padding: 8px 10px;
+  font-size: 14px;
+  font-weight: 550;
+}
+  nav ul li a i {
+    font-size: 13px;
+  }
+
+  .page-background {
+    min-height: 68vh;
+    min-height: 68dvh;
+    padding: 30px 18px;
+  }
+
+  .content {
+  max-width: 600px;
+  padding: 24px 20px;
+}
+
+
+  .health-nugget-section {
+    top: auto;
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .health-card {
+    top: auto;
+    bottom: calc(100% + 12px);
+  }
+}
+
+/* =========================
+   11. MOBILE
+========================= */
+
+@media (max-width: 480px) {
+  header {
+    padding: 9px 8px;
+  }
+
+  nav ul {
+    gap: 5px 7px;
+  }
+
+  nav ul li a {
+
+font-weight: 600;
+  }
+nav ul li a {
+  min-height: 36px;
+  gap: 5px;
+  padding: 6px 7px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+  nav ul li a i {
+    font-size: 11px;
+  }
+
+  nav ul li a[href="index.html"],
+  nav ul li a[href="login.html"] {
+    padding: 6px 10px;
+  }
+
+  .page-background {
+    min-height: 65vh;
+    min-height: 65dvh;
+    padding: 24px 12px;
+  }
+
+ .content {
+  padding: 20px 15px;
+  border-radius: 15px;
+}
+
+.intro-text h1 {
+  margin-bottom: 10px;
+  font-size: 25px;
+}
+
+.intro-text p {
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+  .health-nugget-section {
+    right: 10px;
+    bottom: 10px;
+  }
+
+  .health-btn {
+    min-height: 40px;
+    gap: 6px;
+    padding: 9px 13px;
+    font-size: 12px;
+  }
+
+  .health-card {
+    width: min(300px, calc(100vw - 20px));
+    max-height: 55dvh;
+    padding: 28px 17px 18px;
+    font-size: 13px;
+  }
+
+  footer {
+    padding: 14px 10px;
+    font-size: 12px;
+  }
+}
+
+/* =========================
+   12. VERY SMALL SCREENS
+========================= */
+
+@media (max-width: 360px) {
+  nav ul {
+    gap: 4px;
+  }
+
+  nav ul li a {
+    gap: 4px;
+    padding: 6px;
+    font-size: 10px;
+  }
+
+  nav ul li a i {
+    display: none;
+  }
+
+  .content {
+    padding: 20px 13px;
+  }
+
+  .intro-text h1 {
+    font-size: 25px;
+  }
+
+  .health-btn {
+    gap: 5px;
+    padding: 8px 11px;
+    font-size: 11px;
+  }
+}
+
+/* =========================
+   13. ACCESSIBILITY
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

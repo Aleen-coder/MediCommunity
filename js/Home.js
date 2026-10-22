@@ -1,89 +1,98 @@
-// script.js - All JavaScript functionality for the homepage
-document.addEventListener('DOMContentLoaded', function() {
-  /*runs only after the 
-  full HTML content has loaded.
-  
-  */
 
-      const backgroundElement = document.querySelector('.page-background');
-      /*finds the HTML element with the class .page-background*/
+// Home.js - All JavaScript functionality for the homepage
 
-   /*   const imageUrls = [ 'Page0.webp', 'page2.jpg','page4.jpeg','page1.jpg','page7.webp','page3.jpeg' ];*/
-      const imageUrls = [ 'backgrounds/Page0.webp', 'backgrounds/page2.jpg', 'backgrounds/page4.jpeg', 'backgrounds/page1.jpg', 'backgrounds/page7.webp', 'backgrounds/page3.jpeg' ];
-      
-      
-      /*list of image filenames*/ 
+document.addEventListener('DOMContentLoaded', function () {
 
-      let currentIndex = 0;/*keeps track of which image is currently showing. */
-      let isChanging = false;
+    // Find the element that displays the background slideshow.
+    const backgroundElement = document.querySelector('.page-background');
 
+    /*
+     * Image paths are relative to pages/HomePage.HTML,
+     * not to the location of this JavaScript file.
+     */
+    const imageUrls = [
+        '../backgrounds/Page0.webp',
+        '../backgrounds/page2.jpg',
+        '../backgrounds/page4.jpeg',
+        '../backgrounds/page1.jpg',
+        '../backgrounds/page7.webp',
+        '../backgrounds/page3.jpeg'
+    ];
 
-// Preload images to prevent delays in switching
-const preloadImages = imageUrls.map(url => {
-  const img = new Image();
-  img.src = url;
-  return img;
-});
-     function changeBackgroundImage() {// checks 
-     // if backgroundElement actually exists in the HTML(onterwise then we check null.style)
-  if (backgroundElement && !isChanging) {
+    let currentIndex = 0;
+    let isChanging = false;
 
-    isChanging = true;
-    
-    //  fades out the current image by setting the opacity to 0 (invisible)
-    backgroundElement.style.opacity = 0;
+    // Preload the background images to reduce delays during transitions.
+    const preloadImages = imageUrls.map(function (url) {
+        const img = new Image();
+        img.src = url;
+        return img;
+    });
 
+    // Change the background image with a fade transition.
+    function changeBackgroundImage() {
+        if (!backgroundElement || isChanging) {
+            return;
+        }
 
-    // then we , change the background imageand wait one second
-    setTimeout(() => {
-      backgroundElement.style.backgroundImage = `url('${imageUrls[currentIndex]}')`;
-      /*Wait 1 second before changing the background image.
+        isChanging = true;
 
-This gives time for the fade-out effect (opacity becomes 0) to finish*/ 
+        // Fade out the current background.
+        backgroundElement.style.opacity = '0';
 
-            setTimeout(() => {// Fade in after the background image is set
+        setTimeout(function () {
+            const nextImage = preloadImages[currentIndex];
 
-        backgroundElement.style.opacity = 1;
+            // Only change to an image that loaded successfully.
+            if (nextImage && nextImage.complete && nextImage.naturalWidth > 0) {
+                backgroundElement.style.backgroundImage =
+                    `url("${imageUrls[currentIndex]}")`;
+            }
 
-        currentIndex = (currentIndex + 1) % imageUrls.length;
+            // Fade the background back in.
+            backgroundElement.style.opacity = '1';
 
-        /*moves to the next image.
-         When it reaches the end of the list,
-          it starts again from the first image (because of % operator).*/
-        setTimeout(() => {
+            // Move to the next image for the next transition.
+            currentIndex = (currentIndex + 1) % imageUrls.length;
 
-          isChanging = false;
+            // Prevent another transition from starting too early.
+            setTimeout(function () {
+                isChanging = false;
+            }, 1000);
 
         }, 1000);
-      }, 50);  // Small delay before fading in
-    }, 1000); //  a delay to prevent immediate background changes
-  }
-}
+    }
 
-      setInterval(changeBackgroundImage, 8000);
-//run changeBackgroundImage() every 8 seconds
-      changeBackgroundImage();
- /* Run it once immediately when the page loads
-This makes the first background change happen right away*/
+    // Start the slideshow and repeat every 8 seconds.
+    if (backgroundElement && imageUrls.length > 0) {
+        setInterval(changeBackgroundImage, 8000);
+    }
 
-   
-        // Dynamic Copyright Year
-        document.addEventListener('DOMContentLoaded', function() {
-        const copyrightElement = document.querySelector('footer p');
-        if (copyrightElement) {
-          const currentYear = new Date().getFullYear();
-          copyrightElement.textContent = `\u00A9 ${currentYear} Healthcare Website`;
-        }   }); 
+    // Update the copyright year.
+    // Do not nest another DOMContentLoaded listener here.
+    const copyrightElement = document.querySelector('footer p');
 
-
- 
+    if (copyrightElement) {
+        const currentYear = new Date().getFullYear();
+        copyrightElement.textContent =
+            `\u00A9 ${currentYear} Healthcare Website`;
+    }
 
     // --- Wellness Wisdom Card ---
-    const showHealthNuggetBtn = document.getElementById('showHealthNuggetBtn');
-    const healthNuggetCard = document.getElementById('healthNuggetCard');
-    const nuggetContent = document.getElementById('nuggetContent');
-    // Ensure closeBtn is only queried if healthNuggetCard exists
-    const closeBtn = healthNuggetCard ? healthNuggetCard.querySelector('.close-btn') : null;
+
+    const showHealthNuggetBtn =
+        document.getElementById('showHealthNuggetBtn');
+
+    const healthNuggetCard =
+        document.getElementById('healthNuggetCard');
+
+    const nuggetContent =
+        document.getElementById('nuggetContent');
+
+    // Find the close button only if the card exists.
+    const closeBtn = healthNuggetCard
+        ? healthNuggetCard.querySelector('.close-btn')
+        : null;
 
     const healthMessages = [
         "**Medical Fact:** Regular hand washing is one of the most effective ways to prevent the spread of germs.",
@@ -100,49 +109,59 @@ This makes the first background change happen right away*/
         "**Importance:** Mental health is as vital as physical health; don't hesitate to seek support if needed."
     ];
 
-    let currentNuggetIndex = -1; // To ensure a new one is always shown
+    let currentNuggetIndex = -1;
 
-    if (showHealthNuggetBtn) { // Only add listener if button exists
-        showHealthNuggetBtn.addEventListener('click', () => {
-            // If the card is already visible, hide it first, then show a new one
-            if (healthNuggetCard && healthNuggetCard.style.display === 'block') {
+    // Display a wellness message when the button is clicked.
+    if (showHealthNuggetBtn) {
+        showHealthNuggetBtn.addEventListener('click', function () {
+            if (
+                healthNuggetCard &&
+                healthNuggetCard.style.display === 'block'
+            ) {
                 healthNuggetCard.style.display = 'none';
-                // A tiny delay before showing the next one for smoother transition
-                setTimeout(() => displayRandomNugget(), 100);
+
+                // Brief delay before displaying another message.
+                setTimeout(displayRandomNugget, 100);
             } else {
                 displayRandomNugget();
             }
         });
     }
 
-    if (closeBtn) { // Only add listener if close button exists
-        closeBtn.addEventListener('click', () => {
+    // Close the wellness card.
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function () {
             if (healthNuggetCard) {
                 healthNuggetCard.style.display = 'none';
             }
         });
     }
 
+    // Select a random message different from the previous one.
     function displayRandomNugget() {
-        if (!nuggetContent || !healthNuggetCard) return; // Exit if elements not found
+        if (!nuggetContent || !healthNuggetCard) {
+            return;
+        }
 
         let newIndex;
-        // Loop to ensure we get a different message if there's more than one
+
         do {
             newIndex = Math.floor(Math.random() * healthMessages.length);
-        } while (newIndex === currentNuggetIndex && healthMessages.length > 1);
+        } while (
+            newIndex === currentNuggetIndex &&
+            healthMessages.length > 1
+        );
 
         currentNuggetIndex = newIndex;
-        nuggetContent.innerHTML = healthMessages[currentNuggetIndex]; // Use innerHTML for bolding
+
+        // Convert the Markdown-style bold markers into HTML.
+        const message = healthMessages[currentNuggetIndex];
+        nuggetContent.innerHTML = message.replace(
+            /\*\*(.*?)\*\*/g,
+            '<strong>$1</strong>'
+        );
+
         healthNuggetCard.style.display = 'block';
     }
 
 });
-
-
-
-     
-
-
-
-
