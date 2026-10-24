@@ -1,281 +1,439 @@
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+/* =========================
+   GENERAL STYLES — PRESERVED
+========================= */
 
-        body {
-            font-family: 'Quicksand', sans-serif;
-            background: linear-gradient(135deg, #dfeffc 0%, #eafafc 100%);
-            color: #1C2D4A;
-        }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        header {
-            background-color: rgba(255, 255, 255, 0.95);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 0;
-            z-index: 10;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-        }
+body {
+    font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(135deg, #dfeffc 0%, #eafafc 100%);
+    color: #1C2D4A;
+}
 
-        /* --- ORIGINAL NAVBAR STYLES (DESKTOP) --- */
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            gap: 30px;
-        }
+/* =========================
+   NAVBAR — MATCH APPOINTMENT PAGE
+========================= */
 
-        nav ul li a {
-            text-decoration: none;
-            color: #1C2D4A;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
+header {
+    background-color: rgba(255, 255, 255, 0.95);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
 
-        nav ul li a i {
-            margin-right: 8px;
-            padding: 6px 10px;
-            border: 2px solid #17a2b8;
-            border-radius: 5px;
-        }
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 16px 0;
 
-        nav ul li a:hover {
-            color: #17a2b8;
-        }
-        /* --- END ORIGINAL NAVBAR STYLES --- */
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-        /* --- HEADER SPACER FOR FIXED HEADER --- */
-        /* This div pushes content down to clear the fixed header */
-        .header-spacer {
-            height: 80px; /* Adjust this value for desired desktop gap (e.g., header height + extra space) */
-            width: 100%;
-        }
+nav {
+    width: 100%;
+}
 
-        /* --- MAIN LAYOUT ADJUSTMENTS --- */
-        main {
-            /* Adjusted padding: Removed fixed padding-top as .header-spacer handles vertical offset */
-            padding: 20px; /* Top/Bottom padding 20px, Left/Right 20px */
-            max-width: 1200px;
-            margin: 0 auto; /* Center the main content container on wider screens */
-            display: grid;
-            grid-template-columns: 2fr 1fr; /* Left (tips) is 2 parts, Right (content) is 1 part */
-            gap: 20px;
-            align-items: start;
-        }
+nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-        .tips-container {
-            background: #ffffffea;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-            grid-column: 1 / 2;
-        }
+    list-style: none;
+    padding: 0 12px;
+    margin: 0;
 
-        .tips-container h2 {
-            color: #007bff;
-            text-align: center;
-            margin-bottom: 15px;
-        }
+    min-height: 40px;
+    gap: 4px;
+}
 
-        .disclaimer {
-            font-size: 0.9em;
-            color: #6c757d;
-            font-style: italic;
-            text-align: center;
-            margin-bottom: 25px;
-        }
+nav ul li {
+    flex: 1 1 auto;
+    min-width: 0;
+    text-align: center;
+    padding: 0 4px;
+}
 
-        .tip-category {
-            background: #fff;
-            border: 1px solid #ced4da;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            transition: transform 0.2s ease;
-        }
+nav ul li a {
+    text-decoration: none;
+    color: #1C2D4A;
+    font-weight: 600;
+    font-size: clamp(14px, 1.1vw, 17px);
 
-        .tip-category:hover {
-            transform: translateY(-4px);
-        }
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
 
-        .tip-category h3 {
-            color: #28a745;
-            margin-bottom: 10px;
-        }
+    min-height: 44px;
+    padding: 8px 12px;
 
-        .tip-category ul {
-            padding-left: 20px;
-        }
+    border: 1px solid transparent;
+    border-radius: 8px;
+    line-height: 1.4;
 
-        .tip-category li {
-            margin-bottom: 10px;
-            line-height: 1.6;
-        }
+    transition:
+        color 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
 
-        .icon {
-            color: #28a745;
-            margin-left: 6px;
-            font-size: 1.2em;
-        }
+nav ul li a i {
+    color: #17a2b8;
+    font-size: 15px;
+    margin-right: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
 
-        /* --- NEW CONTAINER FOR RIGHT COLUMN --- */
-        .right-column-wrapper {
-            grid-column: 2 / 3;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 20px;
-        }
+    transition: transform 0.2s ease;
+}
 
-        .quote-section {
-            background-color: rgba(240, 248, 255, 0.8);
-            border-radius: 12px;
-            padding: 30px 20px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
-            text-align: center;
-            width: 100%;
-            max-width: 300px;
-        }
+nav ul li a:hover {
+    color: #138496;
+    background-color: #f0f9fa;
+    border-color: #d8eff1;
+}
 
-        .quote-section h3 {
-            color: #007bff;
-            font-size: 1.3em;
-            margin-bottom: 15px;
-        }
+nav ul li a:hover i {
+    transform: translateY(-1px);
+}
 
-        .quote-section p {
-            font-style: italic;
-            font-size: 1.1em;
-            color: #4a4a4a;
-            line-height: 1.6;
-        }
+/* Login button */
+nav ul li a[href="index.html"],
+nav ul li a[href="login.html"] {
+    padding: 9px 16px;
+    color: #ffffff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    border-radius: 8px;
+}
 
-        /* --- Relaxing Image --- */
-        .calm-image {
-            width: 100%;
-            max-width: 300px;
-        }
+nav ul li a[href="index.html"]:hover,
+nav ul li a[href="login.html"]:hover {
+    color: #ffffff;
+    background-color: #138496;
+    border-color: #138496;
+}
 
-        .calm-image img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            border-radius: 12px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-            max-height: 200px;
-        }
+/* Keyboard accessibility */
+nav ul li a:focus-visible {
+    outline: 3px solid #73d0dc;
+    outline-offset: 3px;
+}
 
-        /* --- Soft Icons with Messages --- */
-        .wellness-icons {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 15px;
-            width: 100%;
-            max-width: 300px;
-        }
+/* Space below the fixed navbar */
+.header-spacer {
+    height: 78px;
+    width: 100%;
+    flex-shrink: 0;
+}
 
-        .wellness-icons div {
-            text-align: right;
-        }
+/* =========================
+   MAIN LAYOUT — PRESERVED
+========================= */
 
-        .wellness-icons i {
-            font-size: 28px;
-            color: #17a2b8;
-            margin-bottom: 5px;
-        }
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 
-        .wellness-icons p {
-            font-size: 0.95em;
-            color: #3b3b3b;
-            line-height: 1.3;
-        }
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    align-items: start;
+}
 
-        /* --- MOBILE RESPONSIVE STYLES --- */
-        @media (max-width: 900px) {
-            /* General mobile layout adjustments */
-            header {
-                padding: 15px 0;
-            }
-            .header-spacer {
-                height: 70px;
-            }
-            main {
-                grid-template-columns: 1fr;
-                padding: 20px;
-                gap: 30px;
-            }
-            .tips-container,
-            .right-column-wrapper {
-                grid-column: 1 / 2;
-                width: 100%;
-                margin-bottom: 0;
-                align-items: center;
-            }
-            .quote-section,
-            .calm-image,
-            .wellness-icons {
-                max-width: 90%;
-                align-self: center;
-            }
-            .wellness-icons {
-                align-items: center;
-                text-align: center;
-            }
-            .wellness-icons div {
-                text-align: center;
-            }
-        }
+.tips-container {
+    background: #ffffffea;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    grid-column: 1 / 2;
+}
 
-        /* --- NAVBAR-SPECIFIC MOBILE STYLES (NO WRAP) --- */
-        /* This breakpoint targets screens where the nav items start to get cramped,
-           forcing them onto a single line and enabling horizontal scroll within the nav. */
-        @media (max-width: 768px) {
-            nav {
-                overflow-x: auto; /* Enables horizontal scrolling for the nav area */
-                -webkit-overflow-scrolling: touch; /* Smoother scrolling on iOS */
-                padding-bottom: 5px; /* Space for potential scrollbar */
-            }
+.tips-container h2 {
+    color: #007bff;
+    text-align: center;
+    margin-bottom: 15px;
+}
 
-            nav ul {
-                flex-wrap: nowrap; /* Prevents items from wrapping to a new line */
-                min-width: max-content; /* Ensures the ul is wide enough for all items */
-                padding: 0 10px; /* Adds a bit of padding to the sides of the scrollable nav */
-                gap: 15px; /* Slightly reduced gap between nav items for mobile */
-            }
+.disclaimer {
+    font-size: 0.9em;
+    color: #6c757d;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 25px;
+}
 
-            nav ul li {
-                flex-shrink: 0; /* Prevents list items from shrinking too much */
-            }
+.tip-category {
+    background: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.2s ease;
+}
 
-            nav ul li a {
-                white-space: nowrap; /* Ensures the text inside the link doesn't wrap */
-                display: inline-flex; /* Use flex to align icon and text nicely */
-                align-items: center;
-                justify-content: center;
-                font-size: 14px; /* Slightly smaller font for mobile nav items */
-                padding: 4px 8px; /* Adjusted padding for mobile nav links */
-            }
+.tip-category:hover {
+    transform: translateY(-4px);
+}
 
-            nav ul li a i {
-                margin-right: 5px; /* Reduced margin for icons */
-                padding: 4px 6px; /* Adjusted icon padding */
-            }
-        }
+.tip-category h3 {
+    color: #28a745;
+    margin-bottom: 10px;
+}
 
-        /* Further refine for very small mobile screens */
-        @media (max-width: 576px) {
-            header {
-                padding: 10px 0;
-            }
-            .header-spacer {
-                height: 60px;
-            }
-            main {
-                padding: 15px;
-            }
-        }
+.tip-category ul {
+    padding-left: 20px;
+}
+
+.tip-category li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.icon {
+    color: #28a745;
+    margin-left: 6px;
+    font-size: 1.2em;
+}
+
+/* =========================
+   RIGHT COLUMN — PRESERVED
+========================= */
+
+.right-column-wrapper {
+    grid-column: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 20px;
+}
+
+.quote-section {
+    background-color: rgba(240, 248, 255, 0.8);
+    border-radius: 12px;
+    padding: 30px 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+}
+
+.quote-section h3 {
+    color: #007bff;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+
+.quote-section p {
+    font-style: italic;
+    font-size: 1.1em;
+    color: #4a4a4a;
+    line-height: 1.6;
+}
+
+/* Relaxing image */
+.calm-image {
+    width: 100%;
+    max-width: 300px;
+}
+
+.calm-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    max-height: 200px;
+}
+
+/* Soft icons with messages */
+.wellness-icons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 15px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.wellness-icons div {
+    text-align: right;
+}
+
+.wellness-icons i {
+    font-size: 28px;
+    color: #17a2b8;
+    margin-bottom: 5px;
+}
+
+.wellness-icons p {
+    font-size: 0.95em;
+    color: #3b3b3b;
+    line-height: 1.3;
+}
+
+/* =========================
+   TABLETS AND SMALL LAPTOPS
+========================= */
+
+@media (max-width: 992px) {
+    header {
+        padding: 12px 0;
+    }
+
+    nav ul {
+        gap: 2px;
+        padding: 0 6px;
+    }
+
+    nav ul li {
+        padding: 0 2px;
+    }
+
+    nav ul li a {
+        font-size: 13px;
+        gap: 3px;
+        padding: 7px 3px;
+    }
+
+    nav ul li a[href="index.html"],
+    nav ul li a[href="login.html"] {
+        padding: 6px 8px;
+    }
+
+    .header-spacer {
+        height: 68px;
+    }
+
+    main {
+        grid-template-columns: 1fr;
+        padding: 20px;
+        gap: 30px;
+    }
+
+    .tips-container,
+    .right-column-wrapper {
+        grid-column: 1 / 2;
+        width: 100%;
+        margin-bottom: 0;
+        align-items: center;
+    }
+
+    .quote-section,
+    .calm-image,
+    .wellness-icons {
+        max-width: 90%;
+        align-self: center;
+    }
+
+    .wellness-icons {
+        align-items: center;
+        text-align: center;
+    }
+
+    .wellness-icons div {
+        text-align: center;
+    }
+}
+
+/* =========================
+   MOBILE NAVBAR
+========================= */
+
+@media (max-width: 600px) {
+    header {
+        padding: 8px 0;
+    }
+
+    nav ul {
+        padding: 0 5px;
+        gap: 1px;
+    }
+
+    nav ul li {
+        padding: 0 1px;
+    }
+
+    nav ul li a {
+        font-size: 11px;
+        gap: 3px;
+        padding: 6px 2px;
+        white-space: normal;
+        text-align: center;
+    }
+
+    nav ul li a i {
+        font-size: 12px;
+    }
+
+    nav ul li a[href="index.html"],
+    nav ul li a[href="login.html"] {
+        padding: 5px 4px;
+    }
+
+    .header-spacer {
+        height: 60px;
+    }
+
+    main {
+        padding: 15px;
+    }
+}
+
+/* =========================
+   VERY SMALL PHONES
+========================= */
+
+@media (max-width: 420px) {
+    header {
+        padding: 6px 0;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        min-height: auto;
+        gap: 3px;
+    }
+
+    nav ul li {
+        flex: 0 1 auto;
+        width: auto;
+    }
+
+    nav ul li a {
+        font-size: 11px;
+        padding: 5px 3px;
+    }
+
+    nav ul li a i {
+        font-size: 11px;
+    }
+
+    nav ul li a[href="index.html"],
+    nav ul li a[href="login.html"] {
+        padding: 5px 4px;
+    }
+
+    .header-spacer {
+        height: 64px;
+    }
+}
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+    nav ul li a,
+    nav ul li a i,
+    .tip-category {
+        transition: none;
+    }
+}

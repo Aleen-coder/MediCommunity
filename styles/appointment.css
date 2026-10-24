@@ -1,360 +1,521 @@
-/* Default styles (Desktop-First) - These are your desired desktop styles */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+/* =========================
+   1. GENERAL RESET & COLORS
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: #f4f7f6;
+    color: #1C2D4A;
+    min-height: 100vh;
+    overflow-x: clip;
+}
+
+/* =========================
+   2. FIXED NAVBAR
+========================= */
+
+header {
+    background-color: rgba(255, 255, 255, 0.95);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 16px 0;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0 12px;
+    min-height: 40px;
+    gap: 4px;
+}
+
+nav ul li {
+    flex: 1 1 auto;
+    min-width: 0;
+    text-align: center;
+    padding: 0 4px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #1C2D4A;
+    font-weight: 600;
+    font-size: clamp(14px, 1.1vw, 17px);
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 44px;
+    padding: 8px 12px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    line-height: 1.4;
+    transition:
+        color 0.25s ease,
+        background-color 0.25s ease,
+        border-color 0.25s ease;
+}
+
+/* Navbar icons */
+
+nav ul li a i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #17a2b8;
+    font-size: 15px;
+    transition: transform 0.25s ease;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+}
+
+/* Hover effect — matches Home.css */
+
+nav ul li a:hover {
+    color: #138496;
+    background: #f0f9fa;
+    border-color: #d8eff1;
+}
+
+nav ul li a:hover i {
+    transform: translateY(-1px);
+}
+
+/* Login link — normal state */
+
+nav ul li a[href="index.html"],
+nav ul li a[href="login.html"] {
+    padding: 9px 16px;
+    color: #ffffff;
+    background: #17a2b8;
+    border-color: #17a2b8;
+    border-radius: 8px;
+}
+
+/* Login link — hover state */
+
+nav ul li a[href="index.html"]:hover,
+nav ul li a[href="login.html"]:hover {
+    color: #ffffff;
+    background: #138496;
+    border-color: #138496;
+}
+
+/* Keyboard accessibility */
+
+nav a:focus-visible {
+    outline: 3px solid #73d0dc;
+    outline-offset: 3px;
+}
+
+/* =========================
+   3. HEADER SPACER
+========================= */
+
+.header-spacer {
+    height: 82px;
+    width: 100%;
+}
+
+/* =========================
+   4. MAIN APPOINTMENT SECTION
+========================= */
+
+main {
+    margin: 0;
+    padding: 0;
+}
+
+#appointment-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    min-height: calc(100vh - 82px);
+    padding: 12px 24px 35px;
+}
+
+/* =========================
+   5. APPOINTMENT FORM
+========================= */
+
+.form-container {
+    width: 100%;
+    max-width: 440px;
+    padding: 28px 30px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 0 auto;
+}
+
+h2 {
+    text-align: center;
+    color: #1C2D4A;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 12px;
+    font-size: clamp(24px, 2vw, 29px);
+    line-height: 1.3;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    width: 100%;
+}
+
+form label {
+    color: #2c3e50;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    min-width: 0;
+    padding: 11px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 15px;
+    color: #1C2D4A;
+    background: #fff;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+    outline: 2px solid rgba(23, 162, 184, 0.3);
+    border-color: #17a2b8;
+}
+
+form textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #88D4CC;
+    color: #1C2D4A;
+    border: none;
+    border-radius: 30px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #1C2D4A;
+    color: #fff;
+}
+
+/* =========================
+   6. MODAL
+========================= */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 24px 16px;
+}
+
+.modal-content {
+    background: #fff;
+    margin: 5vh auto;
+    padding: 24px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 650px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.close {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
     }
 
-    body {
-        font-family: 'Montserrat', sans-serif;
-        background: #f4f7f6;
-        color: #1C2D4A;
-        overflow-x: hidden;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
+}
 
+/* =========================
+   7. LAPTOPS & SMALL DESKTOPS
+========================= */
+
+@media (min-width: 993px) {
     header {
-        background-color: rgba(255, 255, 255, 0.95);
-        position: fixed;
-        top: 0;
-        width: 100%;
-        padding: 23px 0; /* Desktop padding */
-        z-index: 10;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        /* Adding a temporary background to header for visual debugging */
-        /* background-color: rgba(255, 99, 71, 0.95); /* Tomato red for visibility */
+        padding: 15px 0;
     }
 
-    nav ul {
-        display: flex;
-        justify-content: center;
-        list-style: none;
-        padding: 0 10px;
-        align-items: stretch;
-        min-height: 40px;
-    }
-
-    nav ul li {
-        flex-grow: 1;
-        flex-shrink: 1;
-        flex-basis: auto;
-        margin: 0;
-        text-align: center;
-        padding: 0 5px;
-    }
-
-    nav ul li a {
-        text-decoration: none;
-        color: #1C2D4A;
-        font-weight: 600;
-        font-size: 16px;
-        transition: color 0.3s ease;
-        white-space: nowrap;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 8px 0;
-        height: 100%;
-    }
-
-    nav ul li a:hover {
-        color: #17a2b8;
-        background-color: #f8f9fa;
-        border-color: #138496;
-    }
-
-    nav ul li a i {
-        margin-right: 5px;
-        transition: transform 0.2s ease-in-out;
-        border: 2px solid #17a2b8;
-        padding: 8px 13px;
-        border-radius: 5px;
-        display: inline-block;
-        flex-shrink: 0;
-    }
-
-    nav ul li a[href="login.html"] {
-        border: 2px solid #17a2b8;
-        padding: 8px 13px;
-        border-radius: 5px;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        height: auto;
-    }
-
-    nav ul li a[href="login.html"]:hover {
-        background-color: #f8f9fa;
-        color: #17a2b8;
-        border-color: #138496;
-    }
-
-    /* --- NEW SPACER DIV STYLES --- */
     .header-spacer {
-        /* Set this height to be exactly the height of your fixed header + desired gap */
-        height: 140px; /* Example: If header is ~70px, this gives 100px gap */
-        width: 100%;
-        /* Add a temporary background for visual debugging */
-        /* background-color: yellowgreen; /* For visibility */
-    }
-
-    main {
-        /* Remove margin-top here as the spacer now handles the vertical offset */
-        margin-top: 0;
-        padding-top: 20px; /* Keep internal padding for main's content */
-        /* Adding a temporary background to main for visual debugging */
-        /* background-color: lightblue; /* For visibility */
+        height: 78px;
     }
 
     #appointment-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        /* Adjust min-height to take remaining viewport height *after* the spacer */
-        min-height: calc(100vh - 170px); /* Subtract the spacer height */
-        padding: 90px;
+        min-height: calc(100vh - 78px);
+        padding-top: 8px;
+        padding-bottom: 30px;
     }
 
-    /* Form Box Styling */
     .form-container {
-        width: 400px;
-        max-width: 95%;
-        padding: 30px;
-        background: rgba(255, 255, 255, 0.9);
-        border-radius: 10px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        margin: 0 auto;
+        max-width: 440px;
+        padding: 28px 30px;
+    }
+}
+
+/* =========================
+   8. TABLETS
+========================= */
+
+@media (max-width: 992px) {
+    header {
+        padding: 12px 0;
     }
 
-    /* Heading inside the form */
+    nav ul {
+        gap: 2px;
+        padding: 0 6px;
+    }
+
+    nav ul li {
+        padding: 0 2px;
+    }
+
+    nav ul li a {
+        font-size: 13px;
+        gap: 3px;
+        padding: 7px 3px;
+    }
+
+    nav ul li a i {
+        padding: 5px 7px;
+    }
+
+    nav ul li a[href="login.html"] {
+        padding: 6px 8px;
+    }
+
+    .header-spacer {
+        height: 68px;
+    }
+
+    #appointment-container {
+        min-height: calc(100vh - 68px);
+        padding: 12px 20px 30px;
+    }
+
+    .form-container {
+        max-width: 420px;
+        padding: 25px;
+    }
+}
+
+/* =========================
+   9. MOBILE
+========================= */
+
+@media (max-width: 600px) {
+    header {
+        padding: 8px 0;
+    }
+
+    nav ul {
+        padding: 0 5px;
+        gap: 1px;
+    }
+
+    nav ul li {
+        padding: 0 1px;
+    }
+
+    nav ul li a {
+        font-size: 11px;
+        gap: 3px;
+        padding: 6px 2px;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    nav ul li a i {
+        padding: 4px 5px;
+        margin: 0;
+    }
+
+    nav ul li a[href="login.html"] {
+        padding: 5px 4px;
+    }
+
+    .header-spacer {
+        height: 60px;
+    }
+
+    #appointment-container {
+        min-height: calc(100vh - 60px);
+        padding: 12px 14px 24px;
+    }
+
+    .form-container {
+        max-width: 440px;
+        padding: 22px 20px;
+        gap: 12px;
+    }
+
     h2 {
-        text-align: center;
-        color: #1C2D4A;
-        font-family: 'Playfair Display', serif;
-        margin-bottom: 20px;
-        font-size: 28px;
+        font-size: 24px;
+        margin-bottom: 8px;
     }
 
-    /* Form Styling */
     form {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
+        gap: 12px;
     }
 
     form label {
-        color: #2c3e50;
-        font-weight: bold;
-        font-size: 16px;
+        font-size: 14px;
     }
 
     form input,
     form select,
     form textarea {
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
         font-size: 16px;
-        color: #1C2D4A;
+        padding: 11px;
     }
 
     form button {
-        padding: 12px;
-        background-color: #88D4CC;
-        color: #1C2D4A;
-        border: none;
-        border-radius: 30px;
-        font-size: 18px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
+        font-size: 16px;
     }
 
-    form button:hover {
-        background-color: #1C2D4A;
-        color: #fff;
+    .modal-content {
+        padding: 18px;
+        margin: 3vh auto;
     }
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.6);
 }
 
-.modal-content {
-  background: #fff;
-  margin: 10% auto;
-  padding: 20px;
-  border-radius: 8px;
-  width: 60%;
-  animation: fadeIn 0.3s ease-in-out;
+/* =========================
+   10. VERY SMALL PHONES
+========================= */
+
+@media (max-width: 420px) {
+    header {
+        padding: 6px 0;
+    }
+
+    /* Keep the navbar horizontal and allow wrapping */
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        min-height: auto;
+        gap: 3px;
+    }
+
+    nav ul li {
+        flex: 0 1 auto;
+        width: auto;
+    }
+
+    nav ul li a {
+        font-size: 11px;
+        padding: 5px 3px;
+    }
+
+    nav ul li a i {
+        padding: 3px 4px;
+    }
+
+    .header-spacer {
+        height: 64px;
+    }
+
+    #appointment-container {
+        min-height: calc(100vh - 64px);
+        padding: 10px 10px 20px;
+    }
+
+    .form-container {
+        width: 100%;
+        max-width: 360px;
+        padding: 18px 15px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    .modal-content {
+        padding: 15px;
+    }
 }
 
-.close {
-  float: right;
-  font-size: 24px;
-  cursor: pointer;
+/* =========================
+   11. SHORT LAPTOP SCREENS
+========================= */
+
+@media (min-width: 993px) and (max-height: 750px) {
+    #appointment-container {
+        padding-top: 6px;
+        padding-bottom: 20px;
+    }
+
+    .form-container {
+        padding: 20px 26px;
+        gap: 10px;
+    }
+
+    h2 {
+        margin-bottom: 6px;
+    }
+
+    form {
+        gap: 10px;
+    }
+
+    form textarea {
+        min-height: 65px;
+    }
 }
-
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(-20px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-    /* --- Media Query for Smaller Desktop/Tablet Screens (e.g., up to 992px) --- */
-    @media (max-width: 992px) {
-        nav ul li {
-            padding: 0 3px;
-        }
-        nav ul li a {
-            font-size: 15px;
-        }
-        nav ul li a i {
-            margin-right: 3px;
-            padding: 6px 10px;
-        }
-        nav ul li a[href="login.html"] {
-            padding: 6px 10px;
-        }
-        /* No change to spacer height here unless the header's height changes significantly */
-    }
-
-    /* --- Media Query for Mobile/Tablet Screens (e.g., up to 768px) --- */
-    @media (max-width: 768px) {
-        header {
-            padding: 18px 0;
-        }
-        /* Adjust the spacer height to match the new, potentially smaller header height + desired gap */
-        .header-spacer {
-            height: 75px; /* Example: Header height ~60px + 40px gap */
-        }
-        nav ul {
-            padding: 0 5px;
-        }
-        nav ul li {
-            padding: 0 2px;
-        }
-        nav ul li a {
-            font-size: 14px;
-        }
-        nav ul li a i {
-            margin-right: 2px;
-            padding: 5px 8px;
-        }
-        nav ul li a[href="login.html"] {
-            padding: 5px 8px;
-        }
-        main {
-            margin-top: 0; /* Still handled by spacer */
-        }
-        #appointment-container {
-            /* Adjust min-height to subtract the NEW spacer height for this breakpoint */
-            min-height: calc(100vh - 100px);
-            padding: 50px;
-        }
-        .form-container {
-            padding: 25px;
-        }
-        h2 {
-            font-size: 26px;
-        }
-    }
-
-    /* --- Media Query for Small Mobile Screens (e.g., up to 576px) --- */
-    @media (max-width: 576px) {
-        header {
-            padding: 10px 0;
-        }
-        /* Adjust the spacer height */
-        .header-spacer {
-            height: 80px; /* Example: Header height ~50px + 30px gap */
-        }
-        nav ul {
-            padding: 0 2px;
-            min-height: auto;
-        }
-        nav ul li {
-            padding: 0 1px;
-        }
-        nav ul li a {
-            font-size: 12px;
-            padding: 4px 0;
-        }
-        nav ul li a i {
-            margin-right: 0px;
-            padding: 4px 6px;
-        }
-        nav ul li a[href="login.html"] {
-            padding: 4px 6px;
-        }
-        main {
-            margin-top: 0; /* Still handled by spacer */
-        }
-        #appointment-container {
-            /* Adjust min-height to subtract the NEW spacer height for this breakpoint */
-            min-height: calc(100vh - 80px);
-            padding: 20px;
-        }
-        .form-container {
-            padding: 15px;
-        }
-        h2 {
-            font-size: 22px;
-        }
-        form label {
-            font-size: 14px;
-        }
-    }
-
-    /* --- Critical Fallback: Hamburger Menu / Stacking for extremely small screens --- */
-    @media (max-width: 420px) {
-        header {
-            /* Consider even less padding if the header gets very compressed */
-            padding: 5px 0;
-        }
-        /* Adjust the spacer height for the smallest screens */
-        .header-spacer {
-            height: 60px; /* Example: Header height ~40px + 20px gap */
-        }
-        nav ul {
-            flex-direction: column;
-            align-items: center;
-            padding: 0;
-        }
-        nav ul li {
-            width: 100%;
-            margin: 5px 0;
-            padding: 0;
-        }
-        nav ul li a {
-            font-size: 16px;
-            padding: 10px 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        nav ul li a i {
-            margin-right: 10px;
-            padding: 8px 13px;
-        }
-        nav ul li a[href="login.html"] {
-            padding: 8px 13px;
-        }
-        main {
-            margin-top: 0; /* Still handled by spacer */
-        }
-        #appointment-container {
-            /* Adjust min-height to subtract the NEW spacer height for this breakpoint */
-            min-height: calc(100vh - 60px);
-            padding: 10px;
-        }
-        .form-container {
-            width: 98%;
-            padding: 10px;
-        }
-    }

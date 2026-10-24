@@ -1,502 +1,643 @@
- /* --- General Reset & Body Styles --- */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+/* --- General Reset & Body Styles --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        body {
-            font-family: 'Quicksand', sans-serif;
-            background: linear-gradient(135deg, #dfeffc 0%, #eafafc 100%);
-            color: #1C2D4A;
-        }
+body {
+    font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(135deg, #dfeffc 0%, #eafafc 100%);
+    color: #1C2D4A;
+}
 
-        /* --- Header & Navigation Styles --- */
-        header {
-            background-color: rgba(255, 255, 255, 0.95);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 0;
-            z-index: 10;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-        }
+/* =========================
+   HEADER & NAVBAR
+   MATCH APPOINTMENT PAGE
+========================= */
 
-        /* --- ORIGINAL NAVBAR STYLES (DESKTOP) --- */
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            gap: 30px;
-        }
+header {
+    background-color: rgba(255, 255, 255, 0.95);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
 
-        nav ul li a {
-            text-decoration: none;
-            color: #1C2D4A;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 16px 0;
 
-        nav ul li a i {
-            margin-right: 8px;
-            padding: 6px 10px;
-            border: 2px solid #17a2b8;
-            border-radius: 5px;
-        }
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-        nav ul li a:hover {
-            color: #17a2b8;
-        }
-        /* --- END ORIGINAL NAVBAR STYLES --- */
+nav {
+    width: 100%;
+}
 
-        /* --- HEADER SPACER FOR FIXED HEADER --- */
-        /* This div pushes content down to clear the fixed header */
-        .header-spacer {
-            height: 80px; /* Adjust this value for desired desktop gap (e.g., header height + extra space) */
-            width: 100%;
-        }
+nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-        /* --- Main Content Area Styles --- */
-        main {
-            padding: 20px; /* Top/Bottom padding 20px, Left/Right 20px */
-            max-width: 1300px;
-            margin: auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 30px;
-            align-items: start;
-        }
+    list-style: none;
+    padding: 0 12px;
+    margin: 0;
 
-        /* --- Community Section (Left Column) Styles --- */
-        .community-section {
-            background: #ffffffea;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-            grid-column: 1 / 2;
-            width: 100%;
-            text-align: center;
-        }
+    min-height: 40px;
+    gap: 4px;
+}
 
-        .community-section h2 {
-            color: #007bff;
-            margin-bottom: 15px;
-            font-size: 2.2em;
-        }
+nav ul li {
+    flex: 1 1 auto;
+    min-width: 0;
+    text-align: center;
+    padding: 0 4px;
+}
 
-        .community-intro {
-            font-size: 1.1em;
-            color: #4a4a4a;
-            margin-bottom: 30px;
-            line-height: 1.5;
-        }
+nav ul li a {
+    text-decoration: none;
+    color: #1C2D4A;
+    font-weight: 600;
+    font-size: clamp(14px, 1.1vw, 17px);
 
-        /* --- New Post Area Styles --- */
-        .new-post-area {
-            background-color: rgba(240, 248, 255, 0.8);
-            border-radius: 10px;
-            padding: 25px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            text-align: left;
-        }
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
 
-        .new-post-area h3 {
-            color: #28a745;
-            margin-bottom: 20px;
-            font-size: 1.5em;
-            text-align: center;
-        }
+    min-height: 44px;
+    padding: 8px 12px;
 
-        .post-title-input,
-        .post-content-input {
-            width: 100%;
-            padding: 12px 15px;
-            margin-bottom: 15px;
-            border: 1px solid #ced4da;
-            border-radius: 8px;
-            font-family: 'Quicksand', sans-serif;
-            font-size: 1em;
-            color: #1C2D4A;
-            transition: border-color 0.3s ease;
-        }
+    border: 1px solid transparent;
+    border-radius: 8px;
+    line-height: 1.4;
 
-        .post-title-input:focus,
-        .post-content-input:focus {
-            outline: none;
-            border-color: #007bff;
-            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-        }
+    transition:
+        color 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
 
-        .post-content-input {
-            min-height: 120px;
-            resize: vertical;
-        }
+nav ul li a i {
+    color: #17a2b8;
+    font-size: 15px;
+    margin-right: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
 
-        .post-button {
-            background-color: #007bff;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            display: block;
-            width: 100%;
-        }
+    transition: transform 0.2s ease;
+}
 
-        .post-button:hover {
-            background-color: #0056b3;
-            transform: translateY(-2px);
-        }
+nav ul li a:hover {
+    color: #138496;
+    background-color: #f0f9fa;
+    border-color: #d8eff1;
+}
 
-        /* --- Discussion List Styles --- */
-        .discussion-list h3 {
-            color: #007bff;
-            margin-bottom: 20px;
-            font-size: 1.8em;
-            text-align: center;
-        }
+nav ul li a:hover i {
+    transform: translateY(-1px);
+}
 
-        .discussion-post {
-            background: #fff;
-            border: 1px solid #e0e0e0;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-            transition: transform 0.2s ease;
-            text-align: left;
-        }
+/* Login button */
+nav ul li a[href="index.html"],
+nav ul li a[href="login.html"] {
+    padding: 9px 16px;
+    color: #ffffff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    border-radius: 8px;
+}
 
-        .discussion-post:hover {
-            transform: translateY(-3px);
-        }
+nav ul li a[href="index.html"]:hover,
+nav ul li a[href="login.html"]:hover {
+    color: #ffffff;
+    background-color: #138496;
+    border-color: #138496;
+}
 
-        .discussion-post h4 {
-            color: #28a745;
-            font-size: 1.3em;
-            margin-bottom: 10px;
-        }
+/* Keyboard accessibility */
+nav ul li a:focus-visible {
+    outline: 3px solid #73d0dc;
+    outline-offset: 3px;
+}
 
-        .post-meta {
-            font-size: 0.9em;
-            color: #6c757d;
-            margin-bottom: 10px;
-        }
+/* Header spacer for fixed navbar */
+.header-spacer {
+    height: 78px;
+    width: 100%;
+    flex-shrink: 0;
+}
 
-        .post-meta .author {
-            font-weight: 600;
-            color: #17a2b8;
-        }
+/* =========================
+   MAIN CONTENT AREA
+========================= */
 
-        .post-excerpt {
-            font-size: 1em;
-            color: #3b3b3b;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
+main {
+    padding: 20px;
+    max-width: 1300px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    align-items: start;
+}
 
-        .read-more {
-            display: inline-block;
-            color: #007bff;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
+/* --- Community Section (Left Column) --- */
 
-        .read-more:hover {
-            color: #0056b3;
-            text-decoration: underline;
-        }
+.community-section {
+    background: #ffffffea;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    grid-column: 1 / 2;
+    width: 100%;
+    text-align: center;
+}
 
-        /* --- Featured Content Box Styles (for left column) --- */
-        .featured-content-box {
-            background-color: #fcfcfd;
-            border: 1px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 25px;
-            margin-top: 30px; /* Space above this new box */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-            text-align: center;
-        }
+.community-section h2 {
+    color: #007bff;
+    margin-bottom: 15px;
+    font-size: 2.2em;
+}
 
-        .featured-content-box h4 {
-            color: #007bff;
-            font-size: 1.4em;
-            margin-bottom: 10px;
-        }
+.community-intro {
+    font-size: 1.1em;
+    color: #4a4a4a;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
 
-        .featured-content-box .featured-icon {
-            color: #FFD700;
-            margin-right: 8px;
-        }
+/* --- New Post Area --- */
 
-        .featured-content-box p {
-            color: #3b3b3b;
-            font-size: 0.95em;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
+.new-post-area {
+    background-color: rgba(240, 248, 255, 0.8);
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    text-align: left;
+}
 
-        /* --- Community Questions Sidebar (Right Column) --- */
-        .community-questions-sidebar {
-            background: #ffffffea;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-            grid-column: 2 / 3;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
+.new-post-area h3 {
+    color: #28a745;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    text-align: center;
+}
 
-        .community-questions-sidebar h3 {
-            color: #007bff;
-            margin-bottom: 10px;
-            font-size: 1.8em;
-            text-align: center;
-        }
+.post-title-input,
+.post-content-input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1em;
+    color: #1C2D4A;
+    transition: border-color 0.3s ease;
+}
 
-        .question-item {
-            background-color: rgba(240, 248, 255, 0.8);
-            border-radius: 8px;
-            padding: 15px 20px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-            transition: transform 0.2s ease, background-color 0.3s ease;
-            text-align: left;
-        }
+.post-title-input:focus,
+.post-content-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
 
-        .question-item:hover {
-            transform: translateY(-2px);
-            background-color: rgba(240, 248, 255, 1);
-        }
+.post-content-input {
+    min-height: 120px;
+    resize: vertical;
+}
 
-        .question-item a {
-            text-decoration: none;
-            color: #1C2D4A;
-            font-weight: 600;
-            font-size: 1.05em;
-            display: block;
-        }
+.post-button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: block;
+    width: 100%;
+}
 
-        .question-item a:hover {
-            color: #007bff;
-        }
+.post-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
 
-        /* --- Participation Images Section --- */
-        .participation-images {
-            margin-top: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            width: 100%;
-            align-items: center; /* Center images within their column */
-        }
+/* --- Discussion List --- */
 
-        .participation-images img {
-            width: 100%;
-            max-width: 300px; /* Constrain image size on desktop to fit sidebar better */
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            object-fit: cover;
-            max-height: 250px;
-        }
+.discussion-list h3 {
+    color: #007bff;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    text-align: center;
+}
 
-        /* --- Medical Insight Box Styles --- */
-        .medical-insight-box {
-            background-color: #f8fcfd;
-            border: 1px solid #cceeff;
-            border-radius: 12px;
-            padding: 25px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
-            margin-top: 15px;
-            width: 100%;
-        }
+.discussion-post {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s ease;
+    text-align: left;
+}
 
-        .medical-insight-box .insight-icon {
-            font-size: 2.5em;
-            color: #17a2b8;
-            margin-bottom: 10px;
-        }
+.discussion-post:hover {
+    transform: translateY(-3px);
+}
 
-        .medical-insight-box h4 {
-            color: #28a745;
-            font-size: 1.4em;
-            margin-bottom: 10px;
-        }
+.discussion-post h4 {
+    color: #28a745;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
 
-        .medical-insight-box p {
-            color: #4a4a4a;
-            font-size: 0.95em;
-            line-height: 1.6;
-        }
+.post-meta {
+    font-size: 0.9em;
+    color: #6c757d;
+    margin-bottom: 10px;
+}
 
-        /* --- Call to Action Box Styles --- */
-        .call-to-action-box {
-            background-color: #eafafc;
-            border: 1px solid #d0efff;
-            border-radius: 12px;
-            padding: 25px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            margin-top: 15px;
-            width: 100%;
-        }
+.post-meta .author {
+    font-weight: 600;
+    color: #17a2b8;
+}
 
-        .call-to-action-box h3 {
-            color: #007bff;
-            font-size: 1.6em;
-            margin-bottom: 10px;
-        }
+.post-excerpt {
+    font-size: 1em;
+    color: #3b3b3b;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
 
-        .call-to-action-box p {
-            color: #4a4a4a;
-            font-size: 1em;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
+.read-more {
+    display: inline-block;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
 
-        .action-button {
-            background-color: #17a2b8;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.05em;
-            font-weight: 600;
-            text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            display: inline-block;
-        }
+.read-more:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
 
-        .action-button:hover {
-            background-color: #117a8b;
-            transform: translateY(-2px);
-        }
+/* --- Featured Content Box --- */
 
-        /* --- Mobile Responsive Styles --- */
-        @media (max-width: 900px) {
-            /* Adjust header and spacer for mobile */
-            header {
-                padding: 15px 0;
-            }
-            .header-spacer {
-                height: 70px; /* Adjust as needed for mobile header height */
-            }
+.featured-content-box {
+    background-color: #fcfcfd;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 25px;
+    margin-top: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    text-align: center;
+}
 
-            main {
-                grid-template-columns: 1fr; /* Main content columns stack */
-                max-width: 100%;
-                padding: 20px; /* Keep consistent padding */
-                gap: 30px;
-            }
+.featured-content-box h4 {
+    color: #007bff;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
 
-            /* Ensure both main columns stack */
-            .community-section,
-            .community-questions-sidebar {
-                grid-column: 1 / 2; /* Occupy the single column */
-                width: 100%;
-                margin-bottom: 0; /* Remove extra margin if any */
-                /* Align items in the center of the available space on mobile */
-                align-items: center;
-            }
+.featured-content-box .featured-icon {
+    color: #FFD700;
+    margin-right: 8px;
+}
 
-            /* Center specific text/elements within the stacked columns */
-            .community-section h2,
-            .community-questions-sidebar h3,
-            .new-post-area h3,
-            .discussion-list h3,
-            .featured-content-box h4,
-            .featured-content-box p,
-            .medical-insight-box h4,
-            .medical-insight-box p,
-            .call-to-action-box h3,
-            .call-to-action-box p {
-                text-align: center; /* Center these elements on mobile */
-            }
+.featured-content-box p {
+    color: #3b3b3b;
+    font-size: 0.95em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
 
-            /* Adjust text alignment for input fields/buttons if needed, keeping them block */
-            .new-post-area,
-            .discussion-post,
-            .question-item {
-                 text-align: left; /* Keep these left-aligned as they are specific content blocks */
-            }
+/* --- Community Questions Sidebar --- */
 
-            .participation-images {
-                align-items: center; /* Center images on mobile */
-            }
+.community-questions-sidebar {
+    background: #ffffffea;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    grid-column: 2 / 3;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
 
-            /* Ensure internal elements of the sidebar also expand/center correctly */
-            .question-item,
-            .medical-insight-box,
-            .call-to-action-box {
-                max-width: 90%; /* Constrain width of these blocks for better centering */
-                align-self: center; /* Center themselves within their parent flex/grid container */
-            }
-        }
+.community-questions-sidebar h3 {
+    color: #007bff;
+    margin-bottom: 10px;
+    font-size: 1.8em;
+    text-align: center;
+}
 
-        /* Navbar-Specific Mobile Styles (Enhanced for Visibility) */
-        @media (max-width: 768px) {
-            nav {
-                overflow-x: auto; /* Enables horizontal scrolling for the nav area */
-                -webkit-overflow-scrolling: touch; /* Smoother scrolling on iOS */
-                padding-bottom: 5px; /* Space for potential scrollbar */
-            }
+.question-item {
+    background-color: rgba(240, 248, 255, 0.8);
+    border-radius: 8px;
+    padding: 15px 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    text-align: left;
+}
 
-            nav ul {
-                flex-wrap: nowrap; /* Prevents items from wrapping to a new line */
-                min-width: max-content; /* Ensures the ul is wide enough for all items */
-                padding: 0 5px; /* Reduced padding for more space */
-                gap: 10px; /* Reduced gap between nav items for mobile */
-            }
+.question-item:hover {
+    transform: translateY(-2px);
+    background-color: rgba(240, 248, 255, 1);
+}
 
-            nav ul li {
-                flex-shrink: 0; /* Prevents list items from shrinking too much */
-            }
+.question-item a {
+    text-decoration: none;
+    color: #1C2D4A;
+    font-weight: 600;
+    font-size: 1.05em;
+    display: block;
+}
 
-            nav ul li a {
-                white-space: nowrap; /* Ensures the text inside the link doesn't wrap */
-                display: inline-flex; /* Use flex to align icon and text nicely */
-                align-items: center;
-                justify-content: center;
-                font-size: 13px; /* Slightly smaller font for mobile nav items */
-                padding: 3px 6px; /* Adjusted padding for mobile nav links */
-            }
+.question-item a:hover {
+    color: #007bff;
+}
 
-            nav ul li a i {
-                margin-right: 4px; /* Reduced margin for icons */
-                padding: 3px 5px; /* Adjusted icon padding */
-            }
-        }
+/* --- Participation Images --- */
 
-        /* Further refine for very small mobile screens */
-        @media (max-width: 576px) {
-            header {
-                padding: 10px 0;
-            }
-            .header-spacer {
-                height: 60px;
-            }
-            main {
-                padding: 15px;
-            }
+.participation-images {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    align-items: center;
+}
 
-            /* Even smaller adjustments for extremely small screens */
-            nav ul {
-                gap: 8px; /* Slightly tighter gap */
-            }
-            nav ul li a {
-                font-size: 12px; /* Even smaller font */
-                padding: 2px 4px; /* Tighter padding */
-            }
-            nav ul li a i {
-                margin-right: 3px;
-            }
-        }
+.participation-images img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    object-fit: cover;
+    max-height: 250px;
+}
+
+/* --- Medical Insight Box --- */
+
+.medical-insight-box {
+    background-color: #f8fcfd;
+    border: 1px solid #cceeff;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    margin-top: 15px;
+    width: 100%;
+}
+
+.medical-insight-box .insight-icon {
+    font-size: 2.5em;
+    color: #17a2b8;
+    margin-bottom: 10px;
+}
+
+.medical-insight-box h4 {
+    color: #28a745;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+.medical-insight-box p {
+    color: #4a4a4a;
+    font-size: 0.95em;
+    line-height: 1.6;
+}
+
+/* --- Call to Action Box --- */
+
+.call-to-action-box {
+    background-color: #eafafc;
+    border: 1px solid #d0efff;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin-top: 15px;
+    width: 100%;
+}
+
+.call-to-action-box h3 {
+    color: #007bff;
+    font-size: 1.6em;
+    margin-bottom: 10px;
+}
+
+.call-to-action-box p {
+    color: #4a4a4a;
+    font-size: 1em;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.action-button {
+    background-color: #17a2b8;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.05em;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+}
+
+.action-button:hover {
+    background-color: #117a8b;
+    transform: translateY(-2px);
+}
+
+/* =========================
+   RESPONSIVE CONTENT LAYOUT
+========================= */
+
+@media (max-width: 900px) {
+    .header-spacer {
+        height: 68px;
+    }
+
+    main {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+        padding: 20px;
+        gap: 30px;
+    }
+
+    .community-section,
+    .community-questions-sidebar {
+        grid-column: 1 / 2;
+        width: 100%;
+        margin-bottom: 0;
+        align-items: center;
+    }
+
+    .community-section h2,
+    .community-questions-sidebar h3,
+    .new-post-area h3,
+    .discussion-list h3,
+    .featured-content-box h4,
+    .featured-content-box p,
+    .medical-insight-box h4,
+    .medical-insight-box p,
+    .call-to-action-box h3,
+    .call-to-action-box p {
+        text-align: center;
+    }
+
+    .new-post-area,
+    .discussion-post,
+    .question-item {
+        text-align: left;
+    }
+
+    .participation-images {
+        align-items: center;
+    }
+
+    .question-item,
+    .medical-insight-box,
+    .call-to-action-box {
+        max-width: 90%;
+        align-self: center;
+    }
+}
+
+/* =========================
+   NAVBAR — TABLETS
+========================= */
+
+@media (max-width: 992px) {
+    header {
+        padding: 12px 0;
+    }
+
+    nav ul {
+        gap: 2px;
+        padding: 0 6px;
+    }
+
+    nav ul li {
+        padding: 0 2px;
+    }
+
+    nav ul li a {
+        font-size: 13px;
+        gap: 3px;
+        padding: 7px 3px;
+    }
+
+    nav ul li a[href="index.html"],
+    nav ul li a[href="login.html"] {
+        padding: 6px 8px;
+    }
+}
+
+/* =========================
+   NAVBAR — MOBILE
+========================= */
+
+@media (max-width: 600px) {
+    header {
+        padding: 8px 0;
+    }
+
+    nav ul {
+        padding: 0 5px;
+        gap: 1px;
+    }
+
+    nav ul li {
+        padding: 0 1px;
+    }
+
+    nav ul li a {
+        font-size: 11px;
+        gap: 3px;
+        padding: 6px 2px;
+        white-space: normal;
+        text-align: center;
+    }
+
+    nav ul li a i {
+        font-size: 12px;
+    }
+
+    nav ul li a[href="index.html"],
+    nav ul li a[href="login.html"] {
+        padding: 5px 4px;
+    }
+
+    .header-spacer {
+        height: 60px;
+    }
+
+    main {
+        padding: 15px;
+    }
+}
+
+/* =========================
+   NAVBAR — VERY SMALL PHONES
+========================= */
+
+@media (max-width: 420px) {
+    header {
+        padding: 6px 0;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        min-height: auto;
+        gap: 3px;
+    }
+
+    nav ul li {
+        flex: 0 1 auto;
+        width: auto;
+    }
+
+    nav ul li a {
+        font-size: 11px;
+        padding: 5px 3px;
+    }
+
+    nav ul li a i {
+        font-size: 11px;
+    }
+
+    nav ul li a[href="index.html"],
+    nav ul li a[href="login.html"] {
+        padding: 5px 4px;
+    }
+
+    .header-spacer {
+        height: 64px;
+    }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    nav ul li a,
+    nav ul li a i {
+        transition: none;
+    }
+}

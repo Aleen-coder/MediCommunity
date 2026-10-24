@@ -98,7 +98,7 @@ nav ul li a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   min-height: 42px;
   padding: 8px 12px;
   border: 1px solid transparent;
@@ -456,7 +456,20 @@ footer {
     transform: translateY(0) scale(1);
   }
 }
+/* =========================
+   6. LAPTOPS & SMALL DESKTOPS
+========================= */
 
+@media (min-width: 993px) {
+    header {
+        padding: 15px 0;
+    }
+
+    .header-spacer {
+        height: 78px;
+    }
+
+}
 /* =========================
    10. TABLET
 ========================= */
@@ -591,19 +604,30 @@ nav ul li a {
 ========================= */
 
 @media (max-width: 360px) {
-  nav ul {
-    gap: 4px;
-  }
 
+ nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        min-height: auto;
+        gap: 3px;
+    }
+
+    nav ul li {
+        flex: 0 1 auto;
+        width: auto;
+    }
   nav ul li a {
-    gap: 4px;
-    padding: 6px;
-    font-size: 10px;
-  }
+        font-size: 10px;
+        padding: 5px 3px;
+        gap: 4px;
+    }
+
 
   nav ul li a i {
-    display: none;
-  }
+        padding: 3px 4px;
+            display: none;
+    }
+
 
   .content {
     padding: 20px 13px;
@@ -619,6 +643,7 @@ nav ul li a {
     font-size: 11px;
   }
 }
+
 
 /* =========================
    13. ACCESSIBILITY
