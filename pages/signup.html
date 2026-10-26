@@ -4,16 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - Recipe Finder</title>
+    <title>Sign Up - MediCommunity</title>
+
     <link rel="stylesheet" href="../styles/Auth.css">
-     <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-  />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    >
 </head>
 <body>
     <header>
-                <nav>
+        <nav>
             <ul>
                 <li><a href="HomePage.HTML"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="Doctors.html"><i class="fas fa-user-md"></i> Doctors</a></li>
@@ -27,23 +28,46 @@
 
     <section id="signup-container">
         <h2>Create a New Account</h2>
-        <form id="signup-form" action="../signup.php" method="POST">
+
+        <form id="signup-form" action="../php/signup.php" method="POST">
             <label for="username">Username</label>
-            <input type="text" id="username" name="uname" required>
+            <input
+                type="text"
+                id="username"
+                name="uname"
+                maxlength="50"
+                autocomplete="username"
+                required
+            >
 
-
+            <label for="email">Email</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                maxlength="100"
+                autocomplete="email"
+                required
+            >
 
             <label for="password">Password</label>
-            <input type="password" id="password" name="upass" required>
+            <input
+                type="password"
+                id="password"
+                name="upass"
+                minlength="8"
+                autocomplete="new-password"
+                required
+            >
 
-            <button type="submit" >Sign Up</button>
+            <button type="submit">Sign Up</button>
         </form>
+
         <p>Already have an account? <a href="index.html">Login</a></p>
     </section>
 
     <footer>
-        <p>&copy; 2025 Recipe Finder. All rights reserved.</p>
+        <p>&copy; 2026 MediCommunity. All rights reserved.</p>
     </footer>
-
 </body>
 </html>

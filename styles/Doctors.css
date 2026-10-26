@@ -695,3 +695,180 @@ footer {
         transform: none;
     }
 }
+
+
+/* =========================================
+   16. CENTERED LOGIN NOTIFICATION
+========================================= */
+
+.login-notification-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    background: rgba(20, 34, 54, 0.45);
+    backdrop-filter: blur(3px);
+    animation: overlayFadeIn 0.25s ease;
+}
+
+.login-notification {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 420px;
+    padding: 34px 30px 30px;
+    box-sizing: border-box;
+    text-align: center;
+    background: #ffffff;
+    border: 1px solid #dce7f0;
+    border-top: 5px solid #1c2d4a;
+    border-radius: 18px;
+    box-shadow: 0 20px 60px rgba(28, 45, 74, 0.22);
+    font-family: 'Montserrat', sans-serif;
+    animation: notificationPopIn 0.3s ease;
+}
+
+.login-notification-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 18px;
+    color: #1c2d4a;
+    background: #edf3f9;
+    border-radius: 50%;
+    font-size: 23px;
+}
+
+.login-notification-content {
+    width: 100%;
+}
+
+.login-notification-content h3 {
+    margin: 0 0 12px;
+    color: #1c2d4a;
+    font-size: 21px;
+    font-weight: 600;
+}
+
+.login-notification-content p {
+    margin: 0 0 24px;
+    color: #586779;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.login-notification-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.login-notification-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 22px;
+    box-sizing: border-box;
+    color: #ffffff;
+    background: #1c2d4a;
+    border: none;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.login-notification-button:hover {
+    background: #30496d;
+    transform: translateY(-1px);
+}
+
+.login-notification-dismiss {
+    min-height: 42px;
+    padding: 0 12px;
+    color: #64748b;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.login-notification-dismiss:hover {
+    color: #1c2d4a;
+    background: #f3f6f9;
+}
+
+.login-notification-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    width: 30px;
+    height: 30px;
+    color: #7b8794;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    font-size: 25px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.login-notification-close:hover {
+    color: #1c2d4a;
+    background: #f3f6f9;
+}
+
+@keyframes overlayFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes notificationPopIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 480px) {
+    .login-notification {
+        max-width: 360px;
+        padding: 30px 22px 24px;
+    }
+
+    .login-notification-content h3 {
+        font-size: 19px;
+    }
+
+    .login-notification-content p {
+        font-size: 13px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .login-notification-overlay,
+    .login-notification {
+        animation: none;
+    }
+}

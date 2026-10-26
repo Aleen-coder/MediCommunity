@@ -13,3 +13,4 @@ vendor/
 
 # Local database configuration
 /connection.php
+/php/connection.php
