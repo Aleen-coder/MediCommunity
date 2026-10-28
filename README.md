@@ -6,7 +6,7 @@ A healthcare web application designed to bring patients and healthcare resources
 
 ### Homepage
 
-![MediCommunity Homepage](screenshots/HomePage.PNG)
+![MediCommunity Homepage](screenshots/HomePage1.PNG)
 
 ## 🌟 Features
 
